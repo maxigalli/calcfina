@@ -1,0 +1,37 @@
+{
+  "name": "calcfina.com",
+  "version": "1.0.0",
+  "description": "Las mejores calculadoras financieras que todos debemos saber usar para mejorar nuestras finanzas personales",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/feliu-io/calcfina.git"
+  },
+  "keywords": [
+    "Calculadora",
+    "Financiera",
+    "Finanzas",
+    "Pedro",
+    "Moreno"
+  ],
+  "author": "Javier Feliu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/feliu-io/calcfina/issues"
+  },
+  "homepage": "https://github.com/feliu-io/calcfina#readme",
+  "devDependencies": {
+    "browser-sync": "^2.14.0",
+    "del": "^2.2.2",
+    "gulp": "^3.9.1",
+    "gulp-cache": "^0.4.5",
+    "gulp-if": "^2.0.1",
+    "gulp-imagemin": "^3.0.3",
+    "gulp-uglify": "^2.0.0",
+    "gulp-useref": "^3.1.0",
+    "run-sequence": "^1.2.2"
+  }
+}

@@ -1,0 +1,219 @@
+main,
+footer {
+    padding-left: 0;
+}
+
+main {
+    padding-top: 15px;
+}
+
+.main-wrapper {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.dark-primary-color {
+    background: #1976d2;
+}
+
+.default-primary-color {
+    background: #2196f3;
+}
+
+.btn-primary {
+    background: #2196f3!important;
+}
+
+.light-primary-color {
+    background: #bbdefb;
+}
+
+.text-primary-color {
+    color: #fff;
+}
+
+.accent-color {
+    background: #ff4081;
+}
+
+.primary-text-color {
+    color: #212121;
+}
+
+.secondary-text-color {
+    color: #727272;
+}
+
+.text-accent {
+    color: #ff4081;
+}
+
+.side-nav .logo-wrapper img {
+    padding: 24px 32px;
+}
+
+.side-nav .logo-wrapper {
+    background-image: none;
+    background-color: #2196f3;;
+}
+
+.side-nav .collapsible {
+    margin-top: 6px;
+}
+
+.side-nav li:hover, .side-nav li.active {
+    background-color: rgba(227, 242, 253, 0.5);
+}
+
+.nav-heading {
+    padding: 9px 0 9px 0;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.54);
+    /*border-bottom: 1px solid rgba(0, 0, 0, 0.23);*/
+}
+
+a.nav-link {
+    color: #fff;
+}
+
+a.nav-link .fa {
+    padding-right: 8px;
+}
+
+.double-nav {
+    padding: 8px 24px 8px 0;
+}
+
+.double-nav .button-collapse {
+    color: #fff;
+}
+
+.double-nav .button-collapse:hover {
+    color: #bbdefb;
+}
+
+.hidden {
+    display: none;
+}
+
+ .thin-100 {
+     font-weight: 100;
+ }
+
+footer.page-footer {
+    margin-top: 10px;
+    background-color: #1976d2;
+}
+
+footer.page-footer a,
+footer.page-footer p {
+    font-size: 16px;
+    margin-bottom: 24px;
+    line-height: 1.8;
+}
+
+footer.page-footer .column-title {
+    font-size: 20px;
+    margin-top: 36px;
+    text-transform: uppercase;
+}
+
+footer.page-footer .column-content {
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+footer.page-footer .contact-name {
+    display: inline-block;
+    font-size: 18px;
+    margin-bottom: 16px;
+}
+
+footer.page-footer ul li {
+    padding-right: 20px;
+}
+
+footer i.whatsapp,
+footer span.whatsapp {
+    line-height: 19px;
+    vertical-align: middle;
+}
+
+footer span.whatsapp {
+    margin-left: 16px;
+}
+
+footer.page-footer .footer-copyright {
+    height: 130px;
+    padding: 48px 24px;
+    line-height: 28px;
+    color: rgba(255, 255, 255, 0.28);
+    font-size: 12px;
+}
+
+@media (max-height: 700px) {
+    .side-nav .logo-wrapper {
+        height: 100px;
+    }
+
+    .side-nav .logo-wrapper a {
+        height: 100px;
+    }
+
+    .side-nav .logo-wrapper img {
+        padding: 8px 40px;
+    }
+}
+
+@media only screen and (max-width: 479px) {
+    footer.page-footer {
+        margin-top: 10px;
+    }
+}
+
+@media only screen and (min-width: 480px) {
+    footer.page-footer {
+        margin-top: 36px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .main-wrapper {
+        margin-left: 2%;
+        margin-right: 2%;
+    }
+
+    main {
+        padding-top: 15px;
+    }
+}
+
+@media only screen and (min-width: 993px) {
+    main,
+    footer {
+        padding-left: 240px;
+    }
+
+    .main-wrapper {
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+
+    main {
+        padding-top: 90px;
+    }
+
+    footer.page-footer .column-content {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
+@media only screen and (min-width: 1400px) {
+    .main-wrapper {
+        margin-left: 9%;
+        margin-right: 9%;
+    }
+}
