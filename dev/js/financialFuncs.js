@@ -52,6 +52,22 @@
 
             // Returns null if no acceptable result was found.
             return null;
+        },
+        pmt: function(rate, nper, pv, fv, type) {
+            // Sets default values for missing parameters
+            fv = typeof fv !== 'undefined' ? fv : 0;
+            type = typeof type !== 'undefined' ? type : 0;
+
+            var q = Math.pow(1 + rate, nper);
+
+            return -(rate * (fv + (q * pv))) / ((-1 + q) * (1 + rate * type));
+        },
+        fv: function(rate, nper, pmt, pv, type) {
+            // Sets default values for missing parameters
+            pv = typeof pv !== 'undefined' ? pv : 0;
+            type = typeof type !== 'undefined' ? type : 0;
+
+            return -pv * Math.pow((1 + rate), nper);
         }
     }
 })(window.app = window.app || {}, jQuery);

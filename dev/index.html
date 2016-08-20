@@ -60,34 +60,34 @@
             <li><a class="collapsible-header waves-effect">De Ahorro</a>
                 <div class="collapsible-body">
                     <ul>
-                        <li><a href="#" class="waves-effect">Calculadora de Ahorros</a></li>
-                        <li><a href="#" class="waves-effect">Ahorros para Meta</a></li>
-                        <li><a href="#" class="waves-effect">Tiempo para Meta</a></li>
+                        <li><a href="#" onclick="app.showCalc('#c1')" class="waves-effect">Calculadora de Ahorros</a></li>
+                        <li><a href="#" onclick="app.showCalc('#c2')" class="waves-effect">Ahorros para Meta</a></li>
+                        <li><a href="#" onclick="app.showCalc('#c3')" class="waves-effect">Tiempo para Meta</a></li>
                     </ul>
                 </div>
             </li>
             <li><a class="collapsible-header waves-effect">De Préstamo</a>
                 <div class="collapsible-body">
                     <ul>
-                        <li><a href="#" class="waves-effect">Calculadora de Préstamos</a></li>
-                        <li><a href="#" class="waves-effect">Tiempo para Pagar</a></li>
-                        <li><a href="#" class="waves-effect">Tasa de Interés Real</a></li>
+                        <li><a href="#" onclick="app.showCalc('#c4')" class="waves-effect">Calculadora de Préstamos</a></li>
+                        <li><a href="#" onclick="app.showCalc('#c5')" class="waves-effect">Tiempo para Pagar</a></li>
+                        <li><a href="#" onclick="app.showCalc('#c6')" class="waves-effect">Tasa de Interés Real</a></li>
                     </ul>
                 </div>
             </li>
             <li><a class="collapsible-header waves-effect">De Jubilación</a>
                 <div class="collapsible-body">
                     <ul>
-                        <li><a href="#" class="waves-effect">Retiros Periódicos</a></li>
-                        <li><a href="#" class="waves-effect">Duración de Retiros</a></li>
+                        <li><a href="#" onclick="app.showCalc('#c7')" class="waves-effect">Retiros Periódicos</a></li>
+                        <li><a href="#" onclick="app.showCalc('#c8')" class="waves-effect">Duración de Retiros</a></li>
                     </ul>
                 </div>
             </li>
             <li><a class="collapsible-header waves-effect">Tarjeta de Crédito</a>
                 <div class="collapsible-body">
                     <ul>
-                        <li><a href="#" class="waves-effect">Pagos Mínimos</a></li>
-                        <li><a href="#" class="waves-effect">Pagos Fijos</a></li>
+                        <li><a href="#" onclick="app.showCalc('#c9')" class="waves-effect">Pagos Mínimos</a></li>
+                        <li><a href="#" onclick="app.showCalc('#c10')" class="waves-effect">Pagos Fijos</a></li>
                     </ul>
                 </div>
             </li>
@@ -103,59 +103,705 @@
 <main>
     <div class="main-wrapper">
         <div class="container-fluid">
-            <h5 class="section-title st-mdb">Calculadora de Tasa de Interés Real</h5>
+            <div class="calc-container" id="c0">
+                <h5 class="section-title st-mdb">Bienvenidos!</h5>
+                <p>Aquí iría el contenido de la página principal</p>
+            </div>
+            <div class="calc-container" id="c1">
+                <h5 class="section-title st-mdb">Calculadora de Ahorros</h5>
 
-            <div class="row">
-                <div class="col-md-7">
-                    <div class="card card-block">
-                        <h4 class="card-title">1. Instrucciones</h4>
-                        <hr class="m-t-2 m-b-2">
-                        <p class="card-text">Utilice esta calculadora para estimar la tasa de interés de un préstamo,
-                        a partir de los siguientes parmámetros:</p>
-                        <dl class="">
-                            <dt class="col-sm-5">Monto del Préstamo</dt>
-                            <dd class="col-sm-7">Es la cantidad total prestada por el banco o institución financiera</dd>
-                            <dt class="col-sm-5">Duración</dt>
-                            <dd class="col-sm-7">Es el número de años otorgados para pagar el préstamo</dd>
-                            <dt class="col-sm-5">Letra Mensual</dt>
-                            <dd class="col-sm-7">Es el monto abonado mensualmente al préstamo</dd>
-                        </dl>
+                <div class="row">
+                    <div class="col-md-7">
+                        <div class="card card-block">
+                            <h4 class="card-title">1. Instrucciones</h4>
+                            <hr class="m-t-2 m-b-2">
+                            <p class="card-text">Utilice esta calculadora para estimar el total ahorrado (aportes
+                                períodicos más intereses), en un tiempo determinado.  El cálculo se basa en los
+                                siguientes parmámetros:</p>
+                            <dl class="">
+                                <dt class="col-sm-5">Cantidad Inicial</dt>
+                                <dd class="col-sm-7">Es la monto con el que se abre la cuenta de ahorros.</dd>
+                                <dt class="col-sm-5">Aporte Períodico</dt>
+                                <dd class="col-sm-7">Es el monto fijo aportado en cada período.</dd>
+                                <dt class="col-sm-5">Frecuencia</dt>
+                                <dd class="col-sm-7">Es la periodicidad con la que se hacen los aportes fijos.</dd>
+                                <dt class="col-sm-5">Duración</dt>
+                                <dd class="col-sm-7">Es el número de años que durarán los aportes.</dd>
+                                <dt class="col-sm-5">Interés</dt>
+                                <dd class="col-sm-7">Es la tasa fija de interés anual que paga la
+                                    cuenta de ahorros.</dd>
+                                <dt class="col-sm-5">Ahorro Extraordinario</dt>
+                                <dd class="col-sm-7">(Opcional) Es el monto de un solo aporte extraordinario
+                                    ahorrado en un mes determinado.</dd>
+                                <dt class="col-sm-5">En el Mes</dt>
+                                <dd class="col-sm-7">(Opcional) Es el número de mes en el que se realiza el ahorro
+                                    extraordinario.</dd>
+                            </dl>
+                        </div>
+                    </div>
+
+                    <div class="col-md-5">
+                        <div class="card card-block">
+                            <h4 class="card-title">2. Parámetros</h4>
+                            <hr class="m-t-2 m-b-2">
+                            <div class="md-form">
+                                <input placeholder="" type="number" id="c1-f1" class="form-control">
+                                <label for="c1-f1">Cantidad Inicial</label>
+                            </div>
+                            <div class="md-form">
+                                <input placeholder="" type="number" id="c1-f2" class="form-control">
+                                <label for="c1-f2">Aporte Períodico</label>
+                            </div>
+                            <div class="md-form">
+                                <select class="mdb-select" id="c1-f3" >
+                                    <option value="1">Anual</option>
+                                    <option value="2">Semi-anual</option>
+                                    <option value="3">Cuatrimestral</option>
+                                    <option value="6">Bimestral</option>
+                                    <option value="12" selected>Mensual</option>
+                                    <option value="24">Quincenal</option>
+                                    <option value="26">Bi-semanal</option>
+                                    <option value="52">Semanal</option>
+                                    <option value="360">Diario</option>
+                                </select>
+                                <label for="c1-f3">Frecuencia</label>
+                            </div>
+                            <div class="md-form">
+                                <input placeholder="" type="number" id="c1-f4" class="form-control">
+                                <label for="c1-f4">Duración</label>
+                            </div>
+                            <div class="md-form">
+                                <input placeholder="" type="number" id="c1-f5" class="form-control">
+                                <label for="c1-f5">Interés</label>
+                            </div>
+                            <div class="md-form">
+                                <input placeholder="0" type="number" id="c1-f6" class="form-control">
+                                <label for="c1-f6">Ahorro Extraordinario</label>
+                            </div>
+                            <div class="md-form">
+                                <input placeholder="0" type="number" id="c1-f7" class="form-control">
+                                <label for="c1-f7">En el Mes</label>
+                            </div>
+                            <button class="btn btn-primary" onclick="app.c1();">Calcular</button>
+                        </div>
                     </div>
                 </div>
 
-                <div class="col-md-5">
-                    <div class="card card-block">
-                        <h4 class="card-title">2. Parámetros</h4>
-                        <hr class="m-t-2 m-b-2">
-                        <div class="md-form">
-                            <input placeholder="" type="number" id="loan-amount" class="form-control">
-                            <label for="loan-amount">Monto del Préstamo</label>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div id="c1-results" class="card card-block">
+                            <h4 class="card-title">3. Resultados</h4>
+                            <hr class="m-t-2 m-b-2">
+                            <p>No hay resultados por el momento.  Ingrese los párametros del paso 2
+                                y haga click en calcular</p>
                         </div>
-                        <div class="md-form">
-                            <input placeholder="" type="number" id="loan-period" class="form-control">
-                            <label for="loan-period">Duración (en años)</label>
-                        </div>
-                        <div class="md-form">
-                            <input placeholder="" type="number" id="monthly-payment" class="form-control">
-                            <label for="monthly-payment">Letra Mensual</label>
-                        </div>
-                        <button class="btn btn-primary" onclick="app.interestRateCalculator();">Calcular</button>
                     </div>
                 </div>
             </div>
+            <div class="calc-container" id="c2">
+                <h5 class="section-title st-mdb">Calculadora de Ahorros para Meta</h5>
 
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card card-block">
-                        <h4 class="card-title">3. Resultados</h4>
-                        <hr class="m-t-2 m-b-2">
-                        <p>No hay resultados por el momento.  Ingrese los párametros del paso 2
-                            y haga click en calcular</p>
+                <div class="row">
+                    <div class="col-md-7">
+                        <div class="card card-block">
+                            <h4 class="card-title">1. Instrucciones</h4>
+                            <hr class="m-t-2 m-b-2">
+                            <p class="card-text">Utilice esta calculadora para estimar el aporte períodico que debe
+                                hacer, para alcanzar una meta en dinero ahorrado, en un número determinado de años,
+                                a una tasa de interés fija.  Los parámetros son los siguientes:</p>
+                            <dl class="">
+                                <dt class="col-sm-5">Meta</dt>
+                                <dd class="col-sm-7">Es el monto en dólares que desea tener al final de la duración
+                                    del ahorro.</dd>
+                                <dt class="col-sm-5">Cantidad Inicial</dt>
+                                <dd class="col-sm-7">Es el monto con el que se abre la cuenta de ahorros.</dd>
+                                <dt class="col-sm-5">Frecuencia</dt>
+                                <dd class="col-sm-7">Es la periodicidad con la que se hacen los aportes fijos.</dd>
+                                <dt class="col-sm-5">Duración</dt>
+                                <dd class="col-sm-7">Es el número de años que durarán los aportes.</dd>
+                                <dt class="col-sm-5">Interés</dt>
+                                <dd class="col-sm-7">Es la tasa fija de interés anual que paga la cuenta
+                                    de ahorros.</dd>
+                            </dl>
+                        </div>
+                    </div>
+
+                    <div class="col-md-5">
+                        <div class="card card-block">
+                            <h4 class="card-title">2. Parámetros</h4>
+                            <hr class="m-t-2 m-b-2">
+                            <div class="md-form">
+                                <input placeholder="" type="number" id="c2-f1" class="form-control">
+                                <label for="c1-f1">Meta</label>
+                            </div>
+                            <div class="md-form">
+                                <input placeholder="" type="number" id="c2-f2" class="form-control">
+                                <label for="c1-f2">Cantidad Inicial</label>
+                            </div>
+                            <div class="md-form">
+                                <select class="mdb-select" id="c2-f3" >
+                                    <option value="1">Anual</option>
+                                    <option value="2">Semi-anual</option>
+                                    <option value="3">Cuatrimestral</option>
+                                    <option value="6">Bimestral</option>
+                                    <option value="12" selected>Mensual</option>
+                                    <option value="24">Quincenal</option>
+                                    <option value="26">Bi-semanal</option>
+                                    <option value="52">Semanal</option>
+                                    <option value="360">Diario</option>
+                                </select>
+                                <label for="c2-f3">Frecuencia</label>
+                            </div>
+                            <div class="md-form">
+                                <input placeholder="" type="number" id="c2-f4" class="form-control">
+                                <label for="c2-f4">Duración</label>
+                            </div>
+                            <div class="md-form">
+                                <input placeholder="" type="number" id="c2-f5" class="form-control">
+                                <label for="c2-f5">Interés</label>
+                            </div>
+                            <button class="btn btn-primary" onclick="app.c2();">Calcular</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div id="c2-results" class="card card-block">
+                            <h4 class="card-title">3. Resultados</h4>
+                            <hr class="m-t-2 m-b-2">
+                            <p>No hay resultados por el momento.  Ingrese los párametros del paso 2
+                                y haga click en calcular</p>
+                        </div>
                     </div>
                 </div>
             </div>
+            <div class="calc-container" id="c3">
+                <h5 class="section-title st-mdb">Calculadora de Tiempo para Llegar a Meta</h5>
 
+                <div class="row">
+                    <div class="col-md-7">
+                        <div class="card card-block">
+                            <h4 class="card-title">1. Instrucciones</h4>
+                            <hr class="m-t-2 m-b-2">
+                            <p class="card-text">Utilice esta calculadora para estimar cuanto tiempo toma llegar a
+                                una meta de ahorros determinada, haciendo aportes períodicos y con una tasa de
+                                interés fija.  Los parámetros son los siguientes:</p>
+                            <dl class="">
+                                <dt class="col-sm-5">Meta</dt>
+                                <dd class="col-sm-7">Es el monto en dólares que desea tener al final de la duración
+                                    del ahorro.</dd>
+                                <dt class="col-sm-5">Cantidad Inicial</dt>
+                                <dd class="col-sm-7">Es el monto con el que se abre la cuenta de ahorros.</dd>
+                                <dt class="col-sm-5">Aporte Períodico</dt>
+                                <dd class="col-sm-7">Es el monto fijo aportado en cada período.</dd>
+                                <dt class="col-sm-5">Frecuencia</dt>
+                                <dd class="col-sm-7">Es la periodicidad con la que se hacen los aportes fijos.</dd>
+                                <dt class="col-sm-5">Interés</dt>
+                                <dd class="col-sm-7">Es la tasa fija de interés anual que paga la cuenta
+                                    de ahorros.</dd>
+                            </dl>
+                        </div>
+                    </div>
 
+                    <div class="col-md-5">
+                        <div class="card card-block">
+                            <h4 class="card-title">2. Parámetros</h4>
+                            <hr class="m-t-2 m-b-2">
+                            <div class="md-form">
+                                <input placeholder="" type="number" id="c3-f1" class="form-control">
+                                <label for="c3-f1">Meta</label>
+                            </div>
+                            <div class="md-form">
+                                <input placeholder="" type="number" id="c3-f2" class="form-control">
+                                <label for="c3-f2">Cantidad Inicial</label>
+                            </div>
+                            <div class="md-form">
+                                <input placeholder="" type="number" id="c3-f3" class="form-control">
+                                <label for="c3-f2">Aporte Períodico</label>
+                            </div>
+                            <div class="md-form">
+                                <select class="mdb-select" id="c3-f4" >
+                                    <option value="1">Anual</option>
+                                    <option value="2">Semi-anual</option>
+                                    <option value="3">Cuatrimestral</option>
+                                    <option value="6">Bimestral</option>
+                                    <option value="12" selected>Mensual</option>
+                                    <option value="24">Quincenal</option>
+                                    <option value="26">Bi-semanal</option>
+                                    <option value="52">Semanal</option>
+                                    <option value="360">Diario</option>
+                                </select>
+                                <label for="c3-f3">Frecuencia</label>
+                            </div>
+                            <div class="md-form">
+                                <input placeholder="" type="number" id="c3-f5" class="form-control">
+                                <label for="c3-f5">Interés</label>
+                            </div>
+                            <button class="btn btn-primary" onclick="app.c3();">Calcular</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div id="c3-results" class="card card-block">
+                            <h4 class="card-title">3. Resultados</h4>
+                            <hr class="m-t-2 m-b-2">
+                            <p>No hay resultados por el momento.  Ingrese los párametros del paso 2
+                                y haga click en calcular</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="calc-container" id="c4">
+                <h5 class="section-title st-mdb">Calculadora de Préstamos</h5>
+
+                <div class="row">
+                    <div class="col-md-7">
+                        <div class="card card-block">
+                            <h4 class="card-title">1. Instrucciones</h4>
+                            <hr class="m-t-2 m-b-2">
+                            <p class="card-text">Utilice esta calculadora para estimar la letra mensual, el total de
+                                intereses pagados y la tabla de amortización de un préstamo, a partir de los
+                                siguientes parmámetros:</p>
+                            <dl class="">
+                                <dt class="col-sm-5">Monto del Préstamo</dt>
+                                <dd class="col-sm-7">Es la cantidad total prestada por el banco o institución
+                                    financiera.</dd>
+                                <dt class="col-sm-5">Interés</dt>
+                                <dd class="col-sm-7">Es la tasa de interés anual.</dd>
+                                <dt class="col-sm-5">Duración</dt>
+                                <dd class="col-sm-7">Es el número de años otorgados para pagar el préstamo.</dd>
+                                <dt class="col-sm-5">Pagos Extra desde Inicio</dt>
+                                <dd class="col-sm-7">(Opcional) Es el monto fijo adicional pagado en cada letra desde
+                                    el inicio del préstamo.  Se asume que es $0.  Si se ingresa un valor, calcula
+                                    en cuanto tiempo menos se cancelaría el préstamo y el monto en intereses
+                                    ahorrados.</dd>
+                                <dt class="col-sm-5">Abono Extraordinario</dt>
+                                <dd class="col-sm-7">(Opcional) Es el monto de un solo abono extraordinario
+                                    pagado en un mes determinado.  Se asume que es $0.  Si se ingresa un valor, calcula
+                                    en cuanto tiempo menos se cancelaría el préstamo y el monto en intereses
+                                    ahorrados.</dd>
+                            </dl>
+                        </div>
+                    </div>
+
+                    <div class="col-md-5">
+                        <div class="card card-block">
+                            <h4 class="card-title">2. Parámetros</h4>
+                            <hr class="m-t-2 m-b-2">
+                            <div class="md-form">
+                                <input placeholder="" type="number" id="c4-f1" class="form-control">
+                                <label for="c4-f1">Monto del Préstamo</label>
+                            </div>
+                            <div class="md-form">
+                                <input placeholder="" type="number" id="c4-f2" class="form-control">
+                                <label for="c4-f2">Interés</label>
+                            </div>
+                            <div class="md-form">
+                                <input placeholder="" type="number" id="c4-f3" class="form-control">
+                                <label for="c4-f3">Duración (en años)</label>
+                            </div>
+                            <div class="md-form">
+                                <input placeholder="" type="number" id="c4-f4" class="form-control">
+                                <label for="c4-f4">Pagos Extra desde Inicio</label>
+                            </div>
+                            <div class="md-form">
+                                <input placeholder="" type="number" id="c4-f5" class="form-control">
+                                <label for="c4-f5">Abono Extraordinario</label>
+                            </div>
+                            <div class="md-form">
+                                <input placeholder="" type="number" id="c4-f6" class="form-control">
+                                <label for="c4-f6">En Mes</label>
+                            </div>
+                            <button class="btn btn-primary" onclick="app.c4();">Calcular</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div id="c4-results" class="card card-block">
+                            <h4 class="card-title">3. Resultados</h4>
+                            <hr class="m-t-2 m-b-2">
+                            <p>No hay resultados por el momento.  Ingrese los párametros del paso 2
+                                y haga click en calcular</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="calc-container" id="c5">
+                <h5 class="section-title st-mdb">Calculadora de Tiempo para Pagar Préstamo</h5>
+
+                <div class="row">
+                    <div class="col-md-7">
+                        <div class="card card-block">
+                            <h4 class="card-title">1. Instrucciones</h4>
+                            <hr class="m-t-2 m-b-2">
+                            <p class="card-text">Utilice esta calculadora para estimar el tiempo que toma cancelar
+                                un préstamo con tasa de interés fija y aportes mensuales determinados.  Los
+                                parámetros son los siguientes:</p>
+                            <dl class="">
+                                <dt class="col-sm-5">Monto del Préstamo</dt>
+                                <dd class="col-sm-7">Es la cantidad total prestada por el banco o institución
+                                    financiera.</dd>
+                                <dt class="col-sm-5">Interés</dt>
+                                <dd class="col-sm-7">Es la tasa de interés anual.</dd>
+                                <dt class="col-sm-5">Letra Mensual</dt>
+                                <dd class="col-sm-7">Es el abono mensual al préstamo.</dd>
+                            </dl>
+                        </div>
+                    </div>
+
+                    <div class="col-md-5">
+                        <div class="card card-block">
+                            <h4 class="card-title">2. Parámetros</h4>
+                            <hr class="m-t-2 m-b-2">
+                            <div class="md-form">
+                                <input placeholder="" type="number" id="c5-f1" class="form-control">
+                                <label for="c5-f1">Monto del Préstamo</label>
+                            </div>
+                            <div class="md-form">
+                                <input placeholder="" type="number" id="c5-f2" class="form-control">
+                                <label for="c5-f2">Interés</label>
+                            </div>
+                            <div class="md-form">
+                                <input placeholder="" type="number" id="c5-f3" class="form-control">
+                                <label for="c5-f3">Letra Mensual</label>
+                            </div>
+                               <button class="btn btn-primary" onclick="app.c5();">Calcular</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div id="c5-results" class="card card-block">
+                            <h4 class="card-title">3. Resultados</h4>
+                            <hr class="m-t-2 m-b-2">
+                            <p>No hay resultados por el momento.  Ingrese los párametros del paso 2
+                                y haga click en calcular</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="calc-container" id="c6">
+                <h5 class="section-title st-mdb">Calculadora de Tasa de Interés Real</h5>
+
+                <div class="row">
+                    <div class="col-md-7">
+                        <div class="card card-block">
+                            <h4 class="card-title">1. Instrucciones</h4>
+                            <hr class="m-t-2 m-b-2">
+                            <p class="card-text">Utilice esta calculadora para estimar la tasa de interés de un préstamo,
+                                a partir de los siguientes parmámetros:</p>
+                            <dl class="">
+                                <dt class="col-sm-5">Monto del Préstamo</dt>
+                                <dd class="col-sm-7">Es la cantidad total prestada por el banco o
+                                    institución financiera.</dd>
+                                <dt class="col-sm-5">Duración</dt>
+                                <dd class="col-sm-7">Es el número de años otorgados para pagar el préstamo.</dd>
+                                <dt class="col-sm-5">Letra Mensual</dt>
+                                <dd class="col-sm-7">Es el monto abonado mensualmente al préstamo.</dd>
+                            </dl>
+                        </div>
+                    </div>
+
+                    <div class="col-md-5">
+                        <div class="card card-block">
+                            <h4 class="card-title">2. Parámetros</h4>
+                            <hr class="m-t-2 m-b-2">
+                            <div class="md-form">
+                                <input placeholder="" type="number" id="c6-f1" class="form-control">
+                                <label for="c6-f1">Monto del Préstamo</label>
+                            </div>
+                            <div class="md-form">
+                                <input placeholder="" type="number" id="c6-f2" class="form-control">
+                                <label for="c6-f2">Duración (en años)</label>
+                            </div>
+                            <div class="md-form">
+                                <input placeholder="" type="number" id="c6-f3" class="form-control">
+                                <label for="c6-f3">Letra Mensual</label>
+                            </div>
+                            <button class="btn btn-primary" onclick="app.c6();">Calcular</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div id="c6-results" class="card card-block">
+                            <h4 class="card-title">3. Resultados</h4>
+                            <hr class="m-t-2 m-b-2">
+                            <p>No hay resultados por el momento.  Ingrese los párametros del paso 2
+                                y haga click en calcular</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="calc-container" id="c7">
+                <h5 class="section-title st-mdb">Calculadora de Fondo de Jubilación con Retiros Períodicos</h5>
+
+                <div class="row">
+                    <div class="col-md-7">
+                        <div class="card card-block">
+                            <h4 class="card-title">1. Instrucciones</h4>
+                            <hr class="m-t-2 m-b-2">
+                            <p class="card-text">Utilice esta calculadora determinar el monto que debe ahorrar en su
+                            fondo de jubilación para que soporte retiros períodicos fijos durante un tiempo
+                            determinado.  Los parámetros son los siguientes:</p>
+                            <dl class="">
+                                <dt class="col-sm-5">Retiro Períodico</dt>
+                                <dd class="col-sm-7">Es el monto a retirar períodicamente del fondo de jubilación.</dd>
+                                <dt class="col-sm-5">Frecuencia</dt>
+                                <dd class="col-sm-7">Es la periodicidad con la que se hacen los retiros.</dd>
+                                <dt class="col-sm-5">Duración</dt>
+                                <dd class="col-sm-7">Es el número de años que debe durar el fondo de jubilación.</dd>
+                                <dt class="col-sm-5">Interés</dt>
+                                <dd class="col-sm-7">Es la tasa fija de interés anual que genera el
+                                    fondo de jubilación.</dd>
+                            </dl>
+                        </div>
+                    </div>
+
+                    <div class="col-md-5">
+                        <div class="card card-block">
+                            <h4 class="card-title">2. Parámetros</h4>
+                            <hr class="m-t-2 m-b-2">
+                            <div class="md-form">
+                                <input placeholder="" type="number" id="c7-f1" class="form-control">
+                                <label for="c7-f1">Retiro Períodico</label>
+                            </div>
+                            <div class="md-form">
+                                <select class="mdb-select" id="c7-f2" >
+                                    <option value="1">Anual</option>
+                                    <option value="2">Semi-anual</option>
+                                    <option value="3">Cuatrimestral</option>
+                                    <option value="6">Bimestral</option>
+                                    <option value="12" selected>Mensual</option>
+                                    <option value="24">Quincenal</option>
+                                    <option value="26">Bi-semanal</option>
+                                    <option value="52">Semanal</option>
+                                    <option value="360">Diario</option>
+                                </select>
+                                <label for="c7-f2">Frecuencia</label>
+                            </div>
+                            <div class="md-form">
+                                <input placeholder="" type="number" id="c7-f3" class="form-control">
+                                <label for="c7-f3">Duración</label>
+                            </div>
+                            <div class="md-form">
+                                <input placeholder="" type="number" id="c7-f4" class="form-control">
+                                <label for="c7-f4">Interés</label>
+                            </div>
+                            <button class="btn btn-primary" onclick="app.c7();">Calcular</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div id="c7-results" class="card card-block">
+                            <h4 class="card-title">3. Resultados</h4>
+                            <hr class="m-t-2 m-b-2">
+                            <p>No hay resultados por el momento.  Ingrese los párametros del paso 2
+                                y haga click en calcular</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="calc-container" id="c8">
+                <h5 class="section-title st-mdb">Calculadora de Duración de Fondo de Jubilación</h5>
+
+                <div class="row">
+                    <div class="col-md-7">
+                        <div class="card card-block">
+                            <h4 class="card-title">1. Instrucciones</h4>
+                            <hr class="m-t-2 m-b-2">
+                            <p class="card-text">Utilice esta calculadora determinar que toma en agotarse un fondo
+                                de jubilación, haciendo retiros períodicos.  Los parámetros son los siguientes:</p>
+                            <dl class="">
+                                <dt class="col-sm-5">Cantidad Inicial</dt>
+                                <dd class="col-sm-7">Es la monto con el que cuenta el fondo de jubilación, antes de
+                                    hacer el primer retiro períodico.</dd>
+                                <dt class="col-sm-5">Retiro Períodico</dt>
+                                <dd class="col-sm-7">Es el monto a retirar períodicamente del fondo de jubilación.</dd>
+                                <dt class="col-sm-5">Frecuencia</dt>
+                                <dd class="col-sm-7">Es la periodicidad con la que se hacen los retiros.</dd>
+                                <dt class="col-sm-5">Interés</dt>
+                                <dd class="col-sm-7">Es la tasa fija de interés anual que genera el
+                                    fondo de jubilación.</dd>
+                            </dl>
+                        </div>
+                    </div>
+
+                    <div class="col-md-5">
+                        <div class="card card-block">
+                            <h4 class="card-title">2. Parámetros</h4>
+                            <hr class="m-t-2 m-b-2">
+                            <div class="md-form">
+                                <input placeholder="" type="number" id="c8-f1" class="form-control">
+                                <label for="c8-f1">Cantidad Inicial</label>
+                            </div>
+                            <div class="md-form">
+                                <input placeholder="" type="number" id="c8-f2" class="form-control">
+                                <label for="c8-f2">Retiro Períodico</label>
+                            </div>
+                            <div class="md-form">
+                                <select class="mdb-select" id="c8-f3" >
+                                    <option value="1">Anual</option>
+                                    <option value="2">Semi-anual</option>
+                                    <option value="3">Cuatrimestral</option>
+                                    <option value="6">Bimestral</option>
+                                    <option value="12" selected>Mensual</option>
+                                    <option value="24">Quincenal</option>
+                                    <option value="26">Bi-semanal</option>
+                                    <option value="52">Semanal</option>
+                                    <option value="360">Diario</option>
+                                </select>
+                                <label for="c8-f3">Frecuencia</label>
+                            </div>
+                            <div class="md-form">
+                                <input placeholder="" type="number" id="c8-f4" class="form-control">
+                                <label for="c8-f4">Interés</label>
+                            </div>
+                            <button class="btn btn-primary" onclick="app.c8();">Calcular</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div id="c8-results" class="card card-block">
+                            <h4 class="card-title">3. Resultados</h4>
+                            <hr class="m-t-2 m-b-2">
+                            <p>No hay resultados por el momento.  Ingrese los párametros del paso 2
+                                y haga click en calcular</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="calc-container" id="c9">
+                <h5 class="section-title st-mdb">Calculadora de Tarjeta de Crédito con Pagos Mínimos</h5>
+
+                <div class="row">
+                    <div class="col-md-7">
+                        <div class="card card-block">
+                            <h4 class="card-title">1. Instrucciones</h4>
+                            <hr class="m-t-2 m-b-2">
+                            <p class="card-text">Utilice esta calculadora para estimar el tiempo que toma cancelar
+                                una deuda de tarjeta de crédito y los intereses generados, haciendo
+                                solamente los pagos mínimos requeridos.  Los parámetros son los siguientes:</p>
+                            <dl class="">
+                                <dt class="col-sm-5">Saldo</dt>
+                                <dd class="col-sm-7">Es el saldo adeudado en la tarjeta de crédito.</dd>
+                                <dt class="col-sm-5">Interés</dt>
+                                <dd class="col-sm-7">Es la tasa de interés anual.</dd>
+                                <dt class="col-sm-5">Pago Mínimo en %</dt>
+                                <dd class="col-sm-7">Es el pago mínimo como % de la deuda.</dd>
+                                <dt class="col-sm-5">Pago Mínimo en $</dt>
+                                <dd class="col-sm-7">Es el pago mínimo en dólares.</dd>
+                            </dl>
+                        </div>
+                    </div>
+
+                    <div class="col-md-5">
+                        <div class="card card-block">
+                            <h4 class="card-title">2. Parámetros</h4>
+                            <hr class="m-t-2 m-b-2">
+                            <div class="md-form">
+                                <input placeholder="" type="number" id="c9-f1" class="form-control">
+                                <label for="c9-f1">Saldo</label>
+                            </div>
+                            <div class="md-form">
+                                <input placeholder="" type="number" id="c9-f2" class="form-control">
+                                <label for="c9-f2">Interés</label>
+                            </div>
+                            <div class="md-form">
+                                <input placeholder="" type="number" id="c9-f3" class="form-control">
+                                <label for="c9-f3">Pago Mínimo en %</label>
+                            </div>
+                            <div class="md-form">
+                                <input placeholder="" type="number" id="c9-f4" class="form-control">
+                                <label for="c9-f4">Pago Mínimo en $</label>
+                            </div>
+                            <button class="btn btn-primary" onclick="app.c9();">Calcular</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div id="c9-results" class="card card-block">
+                            <h4 class="card-title">3. Resultados</h4>
+                            <hr class="m-t-2 m-b-2">
+                            <p>No hay resultados por el momento.  Ingrese los párametros del paso 2
+                                y haga click en calcular</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="calc-container" id="c10">
+                <h5 class="section-title st-mdb">Calculadora de Tasa de Interés Real</h5>
+
+                <div class="row">
+                    <div class="col-md-7">
+                        <div class="card card-block">
+                            <h4 class="card-title">1. Instrucciones</h4>
+                            <hr class="m-t-2 m-b-2">
+                            <p class="card-text">Utilice esta calculadora para estimar el tiempo que toma cancelar
+                                una deuda de tarjeta de crédito y los intereses generados, haciendo pagos mensuales
+                                fijos.  Los parámetros son los siguientes:</p>
+                            <dl class="">
+                                <dt class="col-sm-5">Saldo</dt>
+                                <dd class="col-sm-7">Es el saldo adeudado en la tarjeta de crédito.</dd>
+                                <dt class="col-sm-5">Interés</dt>
+                                <dd class="col-sm-7">Es la tasa de interés anual.</dd>
+                                <dt class="col-sm-5">Pago Mensual en %</dt>
+                                <dd class="col-sm-7">Es el pago mensual fijo como % de la deuda.</dd>
+                                <dt class="col-sm-5">Pago Mensual en $</dt>
+                                <dd class="col-sm-7">Es el pago mensual fijo en dólares.</dd>
+                            </dl>
+                        </div>
+                    </div>
+
+                    <div class="col-md-5">
+                        <div class="card card-block">
+                            <h4 class="card-title">2. Parámetros</h4>
+                            <hr class="m-t-2 m-b-2">
+                            <div class="md-form">
+                                <input placeholder="" type="number" id="c10-f1" class="form-control">
+                                <label for="c10-f1">Saldo</label>
+                            </div>
+                            <div class="md-form">
+                                <input placeholder="" type="number" id="c10-f2" class="form-control">
+                                <label for="c10-f2">Interés</label>
+                            </div>
+                            <div class="md-form">
+                                <input placeholder="" type="number" id="c10-f3" class="form-control">
+                                <label for="c10-f3">Pago Mensual en %</label>
+                            </div>
+                            <div class="md-form">
+                                <input placeholder="" type="number" id="c10-f4" class="form-control">
+                                <label for="c10-f4">Pago Mensual en $</label>
+                            </div>
+                            <button class="btn btn-primary" onclick="app.c10();">Calcular</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div id="c10-results" class="card card-block">
+                            <h4 class="card-title">3. Resultados</h4>
+                            <hr class="m-t-2 m-b-2">
+                            <p>No hay resultados por el momento.  Ingrese los párametros del paso 2
+                                y haga click en calcular</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </main>

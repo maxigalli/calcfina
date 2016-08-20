@@ -61,8 +61,10 @@ main {
     margin-top: 6px;
 }
 
-.side-nav li:hover, .side-nav li.active {
-    background-color: rgba(227, 242, 253, 0.5);
+.side-nav li:hover, .side-nav li.active,
+.dropdown-content li:hover,
+.dropdown-content li.active {
+    background-color: rgba(227, 242, 253, 0.5)!important;
 }
 
 .nav-heading {
@@ -91,7 +93,7 @@ a.nav-link .fa {
 }
 
 .double-nav .button-collapse:hover {
-    color: #bbdefb;
+    color: #bbdefb!important;
 }
 
 .hidden {
@@ -151,6 +153,19 @@ footer.page-footer .footer-copyright {
     line-height: 28px;
     color: rgba(255, 255, 255, 0.28);
     font-size: 12px;
+}
+
+.dropdown-content {
+    top: 5px!important;
+    height: 250px;
+}
+
+.dropdown-content li {
+    line-height: 1.2rem;
+}
+
+.dropdown-content li span {
+    font-size: 1rem;
 }
 
 @media (max-height: 700px) {
