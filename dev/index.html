@@ -111,46 +111,28 @@
                 <h5 class="section-title st-mdb">Calculadora de Ahorros</h5>
 
                 <div class="row">
-                    <div class="col-md-7">
-                        <div class="card card-block">
-                            <h4 class="card-title">1. Instrucciones</h4>
-                            <hr class="m-t-2 m-b-2">
-                            <p class="card-text">Utilice esta calculadora para estimar el total ahorrado (aportes
-                                períodicos más intereses), en un tiempo determinado.  El cálculo se basa en los
-                                siguientes parmámetros:</p>
-                            <dl class="">
-                                <dt class="col-sm-5">Cantidad Inicial</dt>
-                                <dd class="col-sm-7">Es la monto con el que se abre la cuenta de ahorros.</dd>
-                                <dt class="col-sm-5">Aporte Períodico</dt>
-                                <dd class="col-sm-7">Es el monto fijo aportado en cada período.</dd>
-                                <dt class="col-sm-5">Frecuencia</dt>
-                                <dd class="col-sm-7">Es la periodicidad con la que se hacen los aportes fijos.</dd>
-                                <dt class="col-sm-5">Duración</dt>
-                                <dd class="col-sm-7">Es el número de años que durarán los aportes.</dd>
-                                <dt class="col-sm-5">Interés</dt>
-                                <dd class="col-sm-7">Es la tasa fija de interés anual que paga la
-                                    cuenta de ahorros.</dd>
-                                <dt class="col-sm-5">Ahorro Extraordinario</dt>
-                                <dd class="col-sm-7">(Opcional) Es el monto de un solo aporte extraordinario
-                                    ahorrado en un mes determinado.</dd>
-                                <dt class="col-sm-5">En el Mes</dt>
-                                <dd class="col-sm-7">(Opcional) Es el número de mes en el que se realiza el ahorro
-                                    extraordinario.</dd>
-                            </dl>
-                        </div>
+                    <div class="col-md-12">
+                        <p class="calc-summary">Utilice esta calculadora para estimar el total ahorrado en un tiempo
+                            determinado, haciendo aportes períodicos y recibiendo una tasa de interés fija.</p>
                     </div>
-
-                    <div class="col-md-5">
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
                         <div class="card card-block">
-                            <h4 class="card-title">2. Parámetros</h4>
+                            <h4 class="card-title">Ingrese los valores a calcular:</h4>
                             <hr class="m-t-2 m-b-2">
                             <div class="md-form">
-                                <input placeholder="" type="number" id="c1-f1" class="form-control">
-                                <label for="c1-f1">Cantidad Inicial</label>
+                                <input type="number" id="c1-f1" class="form-control">
+                                <label for="c1-f1">Cantidad Inicial *</label>
+                                <p id="c1-f1-h" class="form-hint">(Obligatorio) Monto con el que se abre la cuenta
+                                    de ahorros.</p>
+                                <p id="c1-f1-v" class="form-validate hidden"></p>
                             </div>
                             <div class="md-form">
-                                <input placeholder="" type="number" id="c1-f2" class="form-control">
-                                <label for="c1-f2">Aporte Períodico</label>
+                                <input type="number" id="c1-f2" class="form-control">
+                                <label for="c1-f2">Aporte Períodico *</label>
+                                <p id="c1-f2-h" class="form-hint">(Obligatorio) Monto fijo aportado en cada período.</p>
+                                <p id="c1-f2-v" class="form-validate hidden"></p>
                             </div>
                             <div class="md-form">
                                 <select class="mdb-select" id="c1-f3" >
@@ -164,23 +146,37 @@
                                     <option value="52">Semanal</option>
                                     <option value="360">Diario</option>
                                 </select>
-                                <label for="c1-f3">Frecuencia</label>
+                                <label for="c1-f3">Frecuencia *</label>
+                                <p id="c1-f3-h" class="form-hint">(Obligatorio) Periodicidad con la que se hacen los
+                                    aportes fijos.</p>
                             </div>
                             <div class="md-form">
-                                <input placeholder="" type="number" id="c1-f4" class="form-control">
-                                <label for="c1-f4">Duración</label>
+                                <input type="number" id="c1-f4" class="form-control">
+                                <label for="c1-f4">Duración *</label>
+                                <p id="c1-f4-h" class="form-hint">(Obligatorio) Número de años que durarán
+                                    los aportes.</p>
+                                <p id="c1-f4-v" class="form-validate hidden"></p>
                             </div>
                             <div class="md-form">
-                                <input placeholder="" type="number" id="c1-f5" class="form-control">
-                                <label for="c1-f5">Interés</label>
+                                <input type="number" id="c1-f5" class="form-control">
+                                <label for="c1-f5">Interés *</label>
+                                <p id="c1-f5-h" class="form-hint">(Obligatorio) Tasa fija de interés anual que
+                                    paga la cuenta de ahorros.</p>
+                                <p id="c1-f5-v" class="form-validate hidden"></p>
                             </div>
                             <div class="md-form">
-                                <input placeholder="0" type="number" id="c1-f6" class="form-control">
+                                <input type="number" id="c1-f6" class="form-control">
                                 <label for="c1-f6">Ahorro Extraordinario</label>
+                                <p id="c1-f6-h" class="form-hint">(Opcional) Monto de un solo aporte extraordinario
+                                    ahorrado en un mes determinado.</p>
+                                <p id="c1-f6-v" class="form-validate hidden"></p>
                             </div>
                             <div class="md-form">
-                                <input placeholder="0" type="number" id="c1-f7" class="form-control">
-                                <label for="c1-f7">En el Mes</label>
+                                <input type="number" id="c1-f7" class="form-control">
+                                <label for="c1-f7">En el Período</label>
+                                <p id="c1-f7-h" class="form-hint">(Opcional) Número del período en el que se realiza el
+                                    ahorro extraordinario.</p>
+                                <p id="c1-f7-v" class="form-validate hidden"></p>
                             </div>
                             <button class="btn btn-primary" onclick="app.c1();">Calcular</button>
                         </div>
@@ -189,8 +185,8 @@
 
                 <div class="row">
                     <div class="col-md-12">
-                        <div id="c1-results" class="card card-block">
-                            <h4 class="card-title">3. Resultados</h4>
+                        <div id="c1-results" class="card card-block hidden">
+                            <h4 class="card-title">Resultados</h4>
                             <hr class="m-t-2 m-b-2">
                             <p>No hay resultados por el momento.  Ingrese los párametros del paso 2
                                 y haga click en calcular</p>

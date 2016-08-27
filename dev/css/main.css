@@ -48,6 +48,16 @@ main {
     color: #ff4081;
 }
 
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
 .side-nav .logo-wrapper img {
     padding: 24px 32px;
 }
@@ -100,9 +110,9 @@ a.nav-link .fa {
     display: none;
 }
 
- .thin-100 {
-     font-weight: 100;
- }
+.thin-100 {
+ font-weight: 100;
+}
 
 footer.page-footer {
     margin-top: 10px;
@@ -166,6 +176,36 @@ footer.page-footer .footer-copyright {
 
 .dropdown-content li span {
     font-size: 1rem;
+}
+
+.select-wrapper input.select-dropdown,
+.form-control {
+    margin-bottom: 0.25rem;
+}
+
+.calc-summary {
+    margin-bottom: 24px;
+}
+
+.form-validate {
+    color: rgba(255, 0, 0, 0.87);
+    font-size: 0.9rem;
+    margin-bottom: 24px;
+}
+
+.form-hint {
+    color: rgba(0, 0, 0, 0.38);
+    font-size: 0.8rem;
+    margin-bottom: 24px;
+}
+
+.md-form label.active + p.form-hint {
+    color: rgba(0, 0, 0, 0.54);
+    font-size: 0.9rem;
+}
+
+.form-control.error {
+    border-bottom: 1px solid red;
 }
 
 @media (max-height: 700px) {
