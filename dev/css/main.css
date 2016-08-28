@@ -208,6 +208,15 @@ footer.page-footer .footer-copyright {
     border-bottom: 1px solid red;
 }
 
+.result-card ul {
+    padding-left: 40px!important;
+    list-style-type: disc!important;
+}
+
+.result-card ul li {
+    list-style-type: disc!important;
+}
+
 @media (max-height: 700px) {
     .side-nav .logo-wrapper {
         height: 100px;

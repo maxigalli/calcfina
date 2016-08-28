@@ -118,20 +118,20 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="card card-block">
+                        <div id="c1-params" class="card card-block">
                             <h4 class="card-title">Ingrese los valores a calcular:</h4>
                             <hr class="m-t-2 m-b-2">
                             <div class="md-form">
                                 <input type="number" id="c1-f1" class="form-control">
                                 <label for="c1-f1">Cantidad Inicial *</label>
-                                <p id="c1-f1-h" class="form-hint">(Obligatorio) Monto con el que se abre la cuenta
+                                <p id="c1-f1-h" class="form-hint">(Requerido) Monto con el que se abre la cuenta
                                     de ahorros.</p>
                                 <p id="c1-f1-v" class="form-validate hidden"></p>
                             </div>
                             <div class="md-form">
                                 <input type="number" id="c1-f2" class="form-control">
                                 <label for="c1-f2">Aporte Períodico *</label>
-                                <p id="c1-f2-h" class="form-hint">(Obligatorio) Monto fijo aportado en cada período.</p>
+                                <p id="c1-f2-h" class="form-hint">(Requerido) Monto fijo aportado en cada período.</p>
                                 <p id="c1-f2-v" class="form-validate hidden"></p>
                             </div>
                             <div class="md-form">
@@ -147,20 +147,20 @@
                                     <option value="360">Diario</option>
                                 </select>
                                 <label for="c1-f3">Frecuencia *</label>
-                                <p id="c1-f3-h" class="form-hint">(Obligatorio) Periodicidad con la que se hacen los
+                                <p id="c1-f3-h" class="form-hint">(Requerido) Periodicidad con la que se hacen los
                                     aportes fijos.</p>
                             </div>
                             <div class="md-form">
                                 <input type="number" id="c1-f4" class="form-control">
                                 <label for="c1-f4">Duración *</label>
-                                <p id="c1-f4-h" class="form-hint">(Obligatorio) Número de años que durarán
+                                <p id="c1-f4-h" class="form-hint">(Requerido) Número de años que durarán
                                     los aportes.</p>
                                 <p id="c1-f4-v" class="form-validate hidden"></p>
                             </div>
                             <div class="md-form">
                                 <input type="number" id="c1-f5" class="form-control">
                                 <label for="c1-f5">Interés *</label>
-                                <p id="c1-f5-h" class="form-hint">(Obligatorio) Tasa fija de interés anual que
+                                <p id="c1-f5-h" class="form-hint">(Requerido) Tasa fija de interés anual que
                                     paga la cuenta de ahorros.</p>
                                 <p id="c1-f5-v" class="form-validate hidden"></p>
                             </div>
@@ -173,8 +173,8 @@
                             </div>
                             <div class="md-form">
                                 <input type="number" id="c1-f7" class="form-control">
-                                <label for="c1-f7">En el Período</label>
-                                <p id="c1-f7-h" class="form-hint">(Opcional) Número del período en el que se realiza el
+                                <label for="c1-f7">En el Mes</label>
+                                <p id="c1-f7-h" class="form-hint">(Opcional) Número del mes en el que se realiza el
                                     ahorro extraordinario.</p>
                                 <p id="c1-f7-v" class="form-validate hidden"></p>
                             </div>
@@ -185,11 +185,18 @@
 
                 <div class="row">
                     <div class="col-md-12">
-                        <div id="c1-results" class="card card-block hidden">
+                        <div id="c1-results" class="card card-block hidden result-card">
                             <h4 class="card-title">Resultados</h4>
                             <hr class="m-t-2 m-b-2">
-                            <p>No hay resultados por el momento.  Ingrese los párametros del paso 2
-                                y haga click en calcular</p>
+                            <p id="c1-results-p1">Si usted abre una cuenta de ahorros con el siguiente criterio:</p>
+                            <ul id="c1-criteria-list">
+
+                            </ul>
+                            <p id="c1-results-p2"></p>
+                            <ul id="c1-result-list">
+
+                            </ul>
+                            <p id="c1-results-p3"></p>
                         </div>
                     </div>
                 </div>

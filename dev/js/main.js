@@ -1,4 +1,47 @@
 (function(app, $) {
+    app.getPeriodText = function(per) {
+        if (per == 360) {
+            return ['En el D&iacute;a',
+                'N&uacute;mero del d&iacute;a en el que se realiza el ahorro extraordinario.',
+                'Diarios', 'D&iacute;as', 'D&iacute;a'];
+        } else if (per == 52) {
+            return ['En la Semana', 'N&uacute;mero de la semana en la que se realiza el ahorro extraordinario.',
+                'Semanales', 'Semanas', 'Semana'];
+        } else if (per == 26) {
+            return ['En la Bisemana', 'N&uacute;mero de la bisemana en la que se realiza el ahorro extraordinario.',
+                'Bisemanales', 'Bisemanas', 'Bisemana'];
+        } else if (per == 24) {
+            return ['En la Quincena', 'N&uacute;mero de la quincena en la que se realiza el ahorro extraordinario.',
+                'Quincenales', 'Quincenas', 'Quincena'];
+        } else if (per == 12) {
+            return ['En el Mes', 'N&uacute;mero del mes en el que se realiza el ahorro extraordinario.',
+                'Mensuales', 'Meses', 'Mes'];
+        } else if (per == 6) {
+            return ['En el Bimestre', 'N&uacute;mero del bimestre en el que se realiza el ahorro extraordinario.',
+                'Bimestrales', 'Bimestres', 'Bimestre'];
+        } else if (per == 3) {
+            return ['En el Cuatrimestre',
+                'N&uacute;mero del cuatrimestre en el que se realiza el ahorro extraordinario.',
+                'Cuatrimestrales', 'Cuatrimestres', 'Cuatrimestre'];
+        } else if (per == 2) {
+            return ['En el Semestre',
+                'N&uacute;mero del semestre en el que se realiza el ahorro extraordinario.',
+                'Semestrales', 'Semestres', 'Semestre'];
+        } else if (per == 1) {
+            return ['En el A&ntilde;o',
+                'N&uacute;mero del a&ntildeo en el que se realiza el ahorro extraordinario.',
+                'Anuales', 'A&ntilde;os', 'A&ntilde;o'];
+        }
+    };
+
+    app.numbersWithCommas = function(x, d) {
+        d = typeof d !== 'undefined' ? d : 0;
+        x = x.toFixed(d);
+        var parts = x.split(".");
+        parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        return parts.join(".");
+    };
+
     app.validate = function(obj){
         var msg = '';
         // Checks if required value is null.
@@ -63,7 +106,7 @@
         var cini = {
             value: isNaN(parseFloat(document.getElementById('c1-f1').value))
                 ? null
-                : parseFloat(document.getElementById('c1-f1').value),
+                : parseFloat(Math.round(document.getElementById('c1-f1').value * 100) / 100),
             required: true,
             type: 'number',
             lowLimit: 0,
@@ -73,7 +116,7 @@
         var aper = {
             value: isNaN(parseFloat(document.getElementById('c1-f2').value))
                 ? null
-                : parseFloat(document.getElementById('c1-f2').value),
+                : parseFloat(Math.round(document.getElementById('c1-f2').value * 100) / 100),
             required: true,
             type: 'number',
             lowLimit: 0,
@@ -101,7 +144,7 @@
         var int = {
             value: isNaN(parseFloat(document.getElementById('c1-f5').value))
                 ? null
-                : parseFloat(document.getElementById('c1-f5').value),
+                : parseFloat(Math.round(document.getElementById('c1-f5').value * 100) / 100),
             required: true,
             type: 'number',
             lowLimit: 0,
@@ -111,7 +154,7 @@
         var aextra = {
             value: isNaN(parseFloat(document.getElementById('c1-f6').value))
                 ? null
-                : parseFloat(document.getElementById('c1-f6').value),
+                : parseFloat(Math.round(document.getElementById('c1-f6').value * 100) / 100),
             required: false,
             type: 'number',
             lowLimit: 1,
@@ -119,9 +162,9 @@
             target: '#c1-f6'
         };
         var mextra = {
-            value: isNaN(parseFloat(document.getElementById('c1-f7').value))
+            value: isNaN(parseInt(document.getElementById('c1-f7').value))
                 ? null
-                : parseFloat(document.getElementById('c1-f7').value),
+                : parseInt(document.getElementById('c1-f7').value),
             required: aextra.value != null,
             requiredMsg: 'Si va a hacer un ahorro extraordinario, debe ingresar el n&uacute;mero del ' +
                 'per&iacute;odo en que lo realizar&aacute;.',
@@ -171,6 +214,49 @@
                     balance += interest + aper.value;
                 }
             }
+
+            // Generates results.
+            var crMsg = '';
+            var rsMsg = '';
+            var p2Msg = '';
+            var p3Msg = '';
+
+            crMsg += '<li>Cantidad inicial de <strong>$' + app.numbersWithCommas(cini.value, 2) +
+                '</strong></li>';
+            crMsg += '<li>Aportes ' + app.getPeriodText(freq.value)[2].toLowerCase() +
+                ' de <strong>$' + app.numbersWithCommas(aper.value, 2) + '</strong></li>';
+            crMsg += '<li>Durante <strong>' + app.numbersWithCommas(durac.value * freq.value) + ' ' +
+                app.getPeriodText(freq.value)[3].toLowerCase() + '</strong></li>';
+            crMsg += '<li>Con tasa de inter&eacute;s anual del <strong>' + int.value.toFixed(2) + '%</strong></li>';
+            if (aextra.value != null) {
+                crMsg += '<li>Con un aporte extraordinario de <strong>$' + app.numbersWithCommas(aextra.value, 2) +
+                    '</strong> en ' + app.getPeriodText(freq.value)[4].toLowerCase() + ' <strong>' +
+                    mextra.value   + '</strong></li>';
+            }
+
+            p2Msg += 'Usted tendr&aacute;, al completar el &uacute;ltimo aporte, un balance de <strong>$' +
+                app.numbersWithCommas(balance, 2) + '</strong>, desglosados as&iacute;:</li>';
+
+            rsMsg += '<li>Cantidad inicial de <strong>$' + app.numbersWithCommas(cini.value, 2) + '</strong></li>';
+            rsMsg += '<li>Aportes per&iacute;odicos por un total de <strong>$'
+                + app.numbersWithCommas(durac.value * freq.value * aper.value, 2) + '</strong></li>';
+            if (aextra.value != null) {
+                rsMsg += '<li>Aporte extraordinario de <strong>$' +
+                    app.numbersWithCommas(aextra.value, 2) + '</strong></li>';
+            }
+            rsMsg += '<li>Intereses ganados por un total de <strong>$' +
+                app. numbersWithCommas(interestEarned, 2) + '</strong></li>';
+
+            p3Msg += 'A continuaci&oacute;n el detalle de sus aportes e intereses:'
+
+            // Writes results to DOM.
+            $('#c1-criteria-list').html(crMsg);
+            $('#c1-results-p2').html(p2Msg);
+            $('#c1-result-list').html(rsMsg);
+            $('#c1-results-p3').html(p3Msg);
+
+            $('#c1-params').addClass('hidden');
+            $('#c1-results').removeClass('hidden');
 
             console.log(cini.value);
             console.log(aper.value);
@@ -284,8 +370,15 @@
         // Initializes mdb sideNav.
         $(".button-collapse").sideNav();
 
-        // Material Select Initialization
+        // Initializes mdb material select.
         $('.mdb-select').material_select();
+
+        // Listens for changes in mdb material selects.
+        $('#c1-f3').change(function() {
+            var periodText = app.getPeriodText(document.getElementById('c1-f3').value);
+            $('label[for="c1-f7"]').html(periodText[0]);
+            $('#c1-f7-h').html('(Opcional) ' + periodText[1]);
+        });
 
         // Shows the require calc, if present in query string.  If not
         // present, shows home page.
