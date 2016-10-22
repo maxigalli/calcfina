@@ -1,4 +1,9 @@
 (function(app, $) {
+    app.calcBack = function(c) {
+        $('#c' + c + '-params').removeClass('hidden');
+        $('#c' + c + '-results').addClass('hidden');
+    };
+
     app.getPeriodText = function(per) {
         if (per == 360) {
             return ['En el D&iacute;a',
@@ -102,6 +107,15 @@
     };
 
     app.c1 = function() {
+        var totalSaved = 0;
+        var interestEarned = 0;
+        var balance = 0;
+        var interest = 0;
+        var crMsg = '';
+        var rsMsg = '';
+        var p2Msg = '';
+        var p3Msg = '';
+        var tblContent = '';
         var validationFailed = false;
         var cini = {
             value: isNaN(parseFloat(document.getElementById('c1-f1').value))
@@ -137,7 +151,7 @@
                 : parseFloat(document.getElementById('c1-f4').value),
             required: true,
             type: 'number',
-            lowLimit: 0,
+            lowLimit: 1,
             highLimit: null,
             target: '#c1-f4'
         };
@@ -202,24 +216,25 @@
         // Calculates only if the validation did not fail.
         if (!validationFailed) {
             totalSaved = cini.value + durac.value * freq.value * aper.value + aextra.value;
-            interestEarned = 0;
             balance = cini.value;
+            tblContent += '<tr><td class="text-xs-center">0</td><td></td><td></td><td class="text-xs-right">' +
+                app.numbersWithCommas(cini.value, 2)+ '</td></tr>';
 
+            // Calculates the rows of the result table and the final balance.
             for (var i = 0; i < freq.value * durac.value; i++) {
+                var p = i + 1;
+                var a = aper.value;
                 interest = balance * (int.value / (100 * freq.value));
                 interestEarned += interest;
-                if (mextra.value == i + 1) {
-                    balance += interest + aper.value + aextra.value;
-                } else {
-                    balance += interest + aper.value;
+                if (mextra.value == p) {
+                    a += aextra.value;
                 }
+                balance += a + interest;
+                tblContent += '<tr><td class="text-xs-center">' + p +
+                    '</td><td class="text-xs-right">' + app.numbersWithCommas(a, 2) +
+                    '</td><td class="text-xs-right">' + app.numbersWithCommas(interest, 2) +
+                    '</td><td class="text-xs-right">' + app.numbersWithCommas(balance, 2) + '</td></tr>';
             }
-
-            // Generates results.
-            var crMsg = '';
-            var rsMsg = '';
-            var p2Msg = '';
-            var p3Msg = '';
 
             crMsg += '<li>Cantidad inicial de <strong>$' + app.numbersWithCommas(cini.value, 2) +
                 '</strong></li>';
@@ -247,46 +262,148 @@
             rsMsg += '<li>Intereses ganados por un total de <strong>$' +
                 app. numbersWithCommas(interestEarned, 2) + '</strong></li>';
 
-            p3Msg += 'A continuaci&oacute;n el detalle de sus aportes e intereses:'
+            p3Msg += 'A continuaci&oacute;n la proyecci&oacute;n de sus aportes e intereses:';
 
             // Writes results to DOM.
             $('#c1-criteria-list').html(crMsg);
             $('#c1-results-p2').html(p2Msg);
             $('#c1-result-list').html(rsMsg);
             $('#c1-results-p3').html(p3Msg);
+            $('#c1-tbody').html(tblContent);
 
             $('#c1-params').addClass('hidden');
             $('#c1-results').removeClass('hidden');
-
-            console.log(cini.value);
-            console.log(aper.value);
-            console.log(freq.value);
-            console.log(durac.value);
-            console.log(int.value);
-            console.log(aextra.value);
-            console.log(mextra.value);
-            console.log(totalSaved);
-            console.log(interestEarned);
-            console.log(balance);
         }
-
     };
 
     app.c2 = function() {
-        var goal = parseFloat(document.getElementById('c2-f1').value);
-        var cini = parseFloat(document.getElementById('c2-f2').value);
-        var freq = parseFloat(document.getElementById('c2-f3').value);
-        var durac = parseFloat(document.getElementById('c2-f4').value);
-        var int = parseFloat(document.getElementById('c2-f5').value);
+        var interestEarned = 0;
+        var balance = 0;
+        var interest = 0;
+        var crMsg = '';
+        var rsMsg = '';
+        var p2Msg = '';
+        var p3Msg = '';
+        var tblContent = '';
+        var validationFailed = false;
 
-        fv = app.financialFuncs.fv(int/(100 * freq), durac * freq, 0, cini);
-        result = app.financialFuncs.pmt(int/(100 * freq), durac * freq, 0, goal + fv);
+        var goal = {
+            value: isNaN(parseFloat(document.getElementById('c2-f1').value))
+                ? null
+                : parseFloat(Math.round(parseFloat(document.getElementById('c2-f1').value) * 100) / 100),
+            required: true,
+            type: 'number',
+            lowLimit: 0,
+            highLimit: null,
+            target: '#c2-f1'
+        };
+        var cini = {
+            value: isNaN(parseFloat(document.getElementById('c2-f2').value))
+                ? null
+                : parseFloat(Math.round(document.getElementById('c2-f2').value * 100) / 100),
+            required: true,
+            type: 'number',
+            lowLimit: 0,
+            highLimit: null,
+            target: '#c2-f2'
+        };
+        var freq = {
+            value: parseFloat(document.getElementById('c2-f3').value),
+            required: true,
+            type: 'number',
+            lowLimit: null,
+            highLimit: null,
+            target: '#c2-f3'
+        };
+        var durac = {
+            value: isNaN(parseFloat(document.getElementById('c2-f4').value))
+                ? null
+                : parseFloat(document.getElementById('c2-f4').value),
+            required: true,
+            type: 'number',
+            lowLimit: 1,
+            highLimit: null,
+            target: '#c2-f4'
+        };
+        var int = {
+            value: isNaN(parseFloat(document.getElementById('c2-f5').value))
+                ? null
+                : parseFloat(Math.round(document.getElementById('c2-f5').value * 100) / 100),
+            required: true,
+            type: 'number',
+            lowLimit: 0,
+            highLimit: 100,
+            target: '#c2-f5'
+        };
 
-        console.log(goal);
-        console.log(cini);
-        console.log(freq);
-        console.log(durac);
-        console.log(int);
+        // Performs validation for each form field.
+        if (!app.validate(goal)) {
+            validationFailed = true;
+        }
+
+        if (!app.validate(cini)) {
+            validationFailed = true;
+        }
+
+        if (!app.validate(durac)) {
+            validationFailed = true;
+        }
+
+        if (!app.validate(int)) {
+            validationFailed = true;
+        }
+
+        // Calculates only if the validation did not fail.
+        if (!validationFailed) {
+            fv = app.financialFuncs.fv(int.value / (100 * freq.value), durac.value * freq.value, 0, cini.value);
+            result = -1 * app.financialFuncs.pmt(int.value / (100 * freq.value), durac.value * freq.value, 0, goal.value + fv);
+            balance = cini.value;
+            tblContent += '<tr><td class="text-xs-center">0</td><td></td><td></td><td class="text-xs-right">' +
+                app.numbersWithCommas(cini.value, 2)+ '</td></tr>';
+
+            // Calculates the rows of the result table and the final balance.
+            for (var i = 0; i < freq.value * durac.value; i++) {
+                var p = i + 1;
+                var a = result;
+                interest = balance * (int.value / (100 * freq.value));
+                interestEarned += interest;
+                balance += a + interest;
+                tblContent += '<tr><td class="text-xs-center">' + p +
+                    '</td><td class="text-xs-right">' + app.numbersWithCommas(a, 2) +
+                    '</td><td class="text-xs-right">' + app.numbersWithCommas(interest, 2) +
+                    '</td><td class="text-xs-right">' + app.numbersWithCommas(balance, 2) + '</td></tr>';
+            }
+
+            crMsg += '<li>Meta de ahorro de <strong>$' + app.numbersWithCommas(goal.value, 2) +
+                '</strong></li>';
+            crMsg += '<li>Cantidad inicial de <strong>$' + app.numbersWithCommas(cini.value, 2) +
+                '</strong></li>';
+            crMsg += '<li>Mediante aportes <strong>' + app.getPeriodText(freq.value)[2].toLowerCase() +
+                '</strong> durante <strong>' + app.numbersWithCommas(durac.value * freq.value) + '</strong> ' +
+                app.getPeriodText(freq.value)[3].toLowerCase() + '</li>';
+            crMsg += '<li>Recibiendo una tasa de inter&eacute;s anual del <strong>' + int.value.toFixed(2) +
+                '%</strong></li>';
+
+            p2Msg += 'Usted tendr&aacute; que realizar aportes ' + app.getPeriodText(freq.value)[2].toLowerCase() +
+                ' de <strong>$' + app.numbersWithCommas(result, 2) + '</strong>.';
+
+            p3Msg += 'A continuaci&oacute;n la proyecci&oacute;n de sus aportes e intereses:';
+
+            // Writes results to DOM.
+            $('#c2-criteria-list').html(crMsg);
+            $('#c2-results-p2').html(p2Msg);
+            $('#c2-results-p3').html(p3Msg);
+            $('#c2-tbody').html(tblContent);
+
+            $('#c2-params').addClass('hidden');
+            $('#c2-results').removeClass('hidden');
+        }
+
+        console.log(goal.value);
+        console.log(cini.value);
+        console.log(freq.value);
+        console.log(durac.value);
+        console.log(int.value);
         console.log(result);
     };
 
@@ -354,6 +471,8 @@
 
     app.showCalc = function(calc) {
         $('.calc-container').addClass('hidden');
+        $('.result-card').addClass('hidden');
+        $('.params-card').removeClass('hidden');
         $(calc).removeClass('hidden');
     };
 
@@ -373,11 +492,18 @@
         // Initializes mdb material select.
         $('.mdb-select').material_select();
 
+        // Initializes the tooltips.
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        });
+
         // Listens for changes in mdb material selects.
         $('#c1-f3').change(function() {
             var periodText = app.getPeriodText(document.getElementById('c1-f3').value);
             $('label[for="c1-f7"]').html(periodText[0]);
             $('#c1-f7-h').html('(Opcional) ' + periodText[1]);
+            console.log(periodText[4]);
+            $('#c1-th-1').html(periodText[4]);
         });
 
         // Shows the require calc, if present in query string.  If not

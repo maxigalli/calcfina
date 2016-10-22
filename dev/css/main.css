@@ -217,6 +217,22 @@ footer.page-footer .footer-copyright {
     list-style-type: disc!important;
 }
 
+.thead-default th {
+    color: #fff!important;
+    background-color: #2196f3!important;
+    text-transform: uppercase!important;
+}
+
+.table-hover tbody tr:hover {
+    background-color: #bbdefb!important;
+}
+
+.btn-flat {
+    padding: 3px 30px;
+    margin: 0 10px 12px 10px;
+    font-size: 1.25rem;
+}
+
 @media (max-height: 700px) {
     .side-nav .logo-wrapper {
         height: 100px;
