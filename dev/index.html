@@ -338,50 +338,43 @@
                 </div>
             </div>
 
-            <!-- TODO:  Add Calculadora 3 - Calculadora de Tiempo para llegar a Meta -->
+            <!-- Calculadora 3 - Calculadora de Tiempo para llegar a Meta -->
             <div class="calc-container" id="c3">
                 <h5 class="section-title st-mdb">Calculadora de Tiempo para Llegar a Meta</h5>
 
                 <div class="row">
-                    <div class="col-md-7">
-                        <div class="card card-block">
-                            <h4 class="card-title">1. Instrucciones</h4>
-                            <hr class="m-t-2 m-b-2">
-                            <p class="card-text">Utilice esta calculadora para estimar cuanto tiempo toma llegar a
-                                una meta de ahorros determinada, haciendo aportes períodicos y con una tasa de
-                                interés fija.  Los parámetros son los siguientes:</p>
-                            <dl class="">
-                                <dt class="col-sm-5">Meta</dt>
-                                <dd class="col-sm-7">Es el monto en dólares que desea tener al final de la duración
-                                    del ahorro.</dd>
-                                <dt class="col-sm-5">Cantidad Inicial</dt>
-                                <dd class="col-sm-7">Es el monto con el que se abre la cuenta de ahorros.</dd>
-                                <dt class="col-sm-5">Aporte Períodico</dt>
-                                <dd class="col-sm-7">Es el monto fijo aportado en cada período.</dd>
-                                <dt class="col-sm-5">Frecuencia</dt>
-                                <dd class="col-sm-7">Es la periodicidad con la que se hacen los aportes fijos.</dd>
-                                <dt class="col-sm-5">Interés</dt>
-                                <dd class="col-sm-7">Es la tasa fija de interés anual que paga la cuenta
-                                    de ahorros.</dd>
-                            </dl>
-                        </div>
+                    <div class="col-md-12">
+                        <p class="calc-summary">Utilice esta calculadora para estimar cuanto tiempo toma llegar a
+                            una meta de ahorros determinada, haciendo aportes períodicos y con una tasa de
+                            interés fija. </p>
                     </div>
+                </div>
 
-                    <div class="col-md-5">
-                        <div class="card card-block">
-                            <h4 class="card-title">2. Parámetros</h4>
+                <!-- Params -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div id="c3-params" class="card card-block params-card">
+                            <h4 class="card-title">Ingrese los valores a calcular:</h4>
                             <hr class="m-t-2 m-b-2">
                             <div class="md-form">
-                                <input placeholder="" type="number" id="c3-f1" class="form-control">
-                                <label for="c3-f1">Meta</label>
+                                <input type="number" id="c3-f1" class="form-control">
+                                <label for="c2-f1">Meta *</label>
+                                <p id="c3-f1-h" class="form-hint">(Requerido) Monto en dólares que desea tener al final
+                                    de la duración del ahorro.</p>
+                                <p id="c3-f1-v" class="form-validate hidden"></p>
                             </div>
                             <div class="md-form">
-                                <input placeholder="" type="number" id="c3-f2" class="form-control">
-                                <label for="c3-f2">Cantidad Inicial</label>
+                                <input type="number" id="c3-f2" class="form-control">
+                                <label for="c3-f2">Cantidad Inicial *</label>
+                                <p id="c3-f2-h" class="form-hint">(Requerido) Monto con el que se abre la cuenta
+                                    de ahorros.</p>
+                                <p id="c3-f2-v" class="form-validate hidden"></p>
                             </div>
                             <div class="md-form">
-                                <input placeholder="" type="number" id="c3-f3" class="form-control">
-                                <label for="c3-f2">Aporte Períodico</label>
+                                <input type="number" id="c3-f3" class="form-control">
+                                <label for="c3-f3">Aporte Períodico *</label>
+                                <p id="c3-f3-h" class="form-hint">(Requerido) Monto fijo aportado en cada período.</p>
+                                <p id="c3-f3-v" class="form-validate hidden"></p>
                             </div>
                             <div class="md-form">
                                 <select class="mdb-select" id="c3-f4" >
@@ -395,24 +388,58 @@
                                     <option value="52">Semanal</option>
                                     <option value="360">Diario</option>
                                 </select>
-                                <label for="c3-f3">Frecuencia</label>
+                                <label for="c3-f4">Frecuencia *</label>
+                                <p id="c3-f4-h" class="form-hint">(Requerido) Periodicidad con la que se hacen los
+                                    aportes fijos.</p>
                             </div>
                             <div class="md-form">
-                                <input placeholder="" type="number" id="c3-f5" class="form-control">
-                                <label for="c3-f5">Interés</label>
+                                <input type="number" id="c3-f5" class="form-control">
+                                <label for="c3-f5">Interés *</label>
+                                <p id="c3-f5-h" class="form-hint">(Requerido) Tasa fija de interés anual que
+                                    paga la cuenta de ahorros.</p>
+                                <p id="c3-f5-v" class="form-validate hidden"></p>
                             </div>
                             <button class="btn btn-primary" onclick="app.c3();">Calcular</button>
                         </div>
                     </div>
                 </div>
 
+                <!-- Results -->
                 <div class="row">
                     <div class="col-md-12">
-                        <div id="c3-results" class="card card-block">
-                            <h4 class="card-title">3. Resultados</h4>
+                        <div id="c3-results" class="card card-block hidden result-card">
+                            <h4 class="card-title">
+                                Resultados
+                                <button class="btn-flat waves-effect pull-right"
+                                        data-toggle="tooltip" data-placement="bottom" title="Modificar Parámetros">
+                                    <i class="fa fa-arrow-left right" onclick="app.calcBack(3)"></i></button>
+                                <button class="btn-flat waves-effect pull-right"
+                                        data-toggle="tooltip" data-placement="bottom" title="Imprimir">
+                                    <i class="fa fa-print"></i></button>
+                            </h4>
                             <hr class="m-t-2 m-b-2">
-                            <p>No hay resultados por el momento.  Ingrese los párametros del paso 2
-                                y haga click en calcular</p>
+                            <p id="c3-results-p1">Para alcanzar su objetivo de ahorro, según el siguiente criterio:</p>
+                            <ul id="c3-criteria-list">
+
+                            </ul>
+                            <p id="c3-results-p2"></p>
+                            <ul id="c3-result-list">
+
+                            </ul>
+                            <p id="c3-results-p3"></p>
+                            <table class="table table-bordered table-hover">
+                                <thead class="thead-default">
+                                <tr>
+                                    <th class="text-xs-center" id="c3-th-1">Mes</th>
+                                    <th class="text-xs-center">Aporte</th>
+                                    <th class="text-xs-center">Interés</th>
+                                    <th class="text-xs-center">Balance</th>
+                                </tr>
+                                </thead>
+                                <tbody id="c3-tbody">
+
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
