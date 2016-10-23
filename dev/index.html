@@ -103,6 +103,8 @@
 <main>
     <div class="main-wrapper">
         <div class="container-fluid">
+
+            <!-- TODO: Add home page information -->
             <div class="calc-container" id="c0">
                 <h5 class="section-title st-mdb">Bienvenidos!</h5>
                 <p>Aquí iría el contenido de la página principal</p>
@@ -241,7 +243,8 @@
                 </div>
 
                 <!-- Params -->
-                <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-12">
                     <div id="c2-params" class="card card-block params-card">
                         <h4 class="card-title">Ingrese los valores a calcular:</h4>
                         <hr class="m-t-2 m-b-2">
@@ -292,6 +295,7 @@
                         <button class="btn btn-primary" onclick="app.c2();">Calcular</button>
                     </div>
                 </div>
+                </div>
 
                 <!-- Results -->
                 <div class="row">
@@ -334,7 +338,7 @@
                 </div>
             </div>
 
-            <!-- Calculadora 3 - Calculadora de Tiempo para llegar a Meta -->
+            <!-- TODO:  Add Calculadora 3 - Calculadora de Tiempo para llegar a Meta -->
             <div class="calc-container" id="c3">
                 <h5 class="section-title st-mdb">Calculadora de Tiempo para Llegar a Meta</h5>
 
@@ -426,52 +430,54 @@
                 </div>
 
                 <!-- Params -->
-                <div class="col-md-12">
-                    <div id="c4-params" class="card card-block params-card">
-                        <h4 class="card-title">Ingrese los valores a calcular:</h4>
-                        <hr class="m-t-2 m-b-2">
-                        <div class="md-form">
-                            <input type="number" id="c4-f1" class="form-control">
-                            <label for="c4-f1">Monto del Préstamo *</label>
-                            <p id="c4-f1-h" class="form-hint">(Requerido) Cantidad total prestada por el banco o
-                                institución financiera.</p>
-                            <p id="c4-f1-v" class="form-validate hidden"></p>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div id="c4-params" class="card card-block params-card">
+                            <h4 class="card-title">Ingrese los valores a calcular:</h4>
+                            <hr class="m-t-2 m-b-2">
+                            <div class="md-form">
+                                <input type="number" id="c4-f1" class="form-control">
+                                <label for="c4-f1">Monto del Préstamo *</label>
+                                <p id="c4-f1-h" class="form-hint">(Requerido) Cantidad total prestada por el banco o
+                                    institución financiera.</p>
+                                <p id="c4-f1-v" class="form-validate hidden"></p>
+                            </div>
+                            <div class="md-form">
+                                <input type="number" id="c4-f2" class="form-control">
+                                <label for="c4-f2">Interés *</label>
+                                <p id="c4-f2-h" class="form-hint">(Requerido) Tasa fija de interés anual.</p>
+                                <p id="c4-f2-v" class="form-validate hidden"></p>
+                            </div>
+                            <div class="md-form">
+                                <input type="number" id="c4-f3" class="form-control">
+                                <label for="c4-f3">Duración *</label>
+                                <p id="c4-f3-h" class="form-hint">(Requerido) Número de años otorgados para
+                                    pagar el préstamo.</p>
+                                <p id="c4-f3-v" class="form-validate hidden"></p>
+                            </div>
+                            <div class="md-form">
+                                <input type="number" id="c4-f4" class="form-control">
+                                <label for="c4-f4">Pagos Extra desde Inicio</label>
+                                <p id="c4-f4-h" class="form-hint">(Opcional) Monto fijo adicional pagado en cada letra
+                                    desde el inicio del préstamo.  Se asume que es $0.</p>
+                                <p id="c4-f4-v" class="form-validate hidden"></p>
+                            </div>
+                            <div class="md-form">
+                                <input type="number" id="c4-f5" class="form-control">
+                                <label for="c4-f5">Abono Extraordinario</label>
+                                <p id="c4-f5-h" class="form-hint">(Opcional) Monto de un solo abono extraordinario,
+                                    pagado en un mes determinado.  Se asume que es $0.</p>
+                                <p id="c4-f5-v" class="form-validate hidden"></p>
+                            </div>
+                            <div class="md-form">
+                                <input type="number" id="c4-f6" class="form-control">
+                                <label for="c4-f6">En el Mes</label>
+                                <p id="c4-f6-h" class="form-hint">(Opcional) Número del mes en el que se realiza el
+                                    ahorro extraordinario.</p>
+                                <p id="c4-f6-v" class="form-validate hidden"></p>
+                            </div>
+                            <button class="btn btn-primary" onclick="app.c4();">Calcular</button>
                         </div>
-                        <div class="md-form">
-                            <input type="number" id="c4-f2" class="form-control">
-                            <label for="c4-f2">Interés *</label>
-                            <p id="c4-f2-h" class="form-hint">(Requerido) Tasa fija de interés anual.</p>
-                            <p id="c4-f2-v" class="form-validate hidden"></p>
-                        </div>
-                        <div class="md-form">
-                            <input type="number" id="c4-f3" class="form-control">
-                            <label for="c4-f3">Duración *</label>
-                            <p id="c4-f3-h" class="form-hint">(Requerido) Número de años otorgados para
-                                pagar el préstamo.</p>
-                            <p id="c4-f3-v" class="form-validate hidden"></p>
-                        </div>
-                        <div class="md-form">
-                            <input type="number" id="c4-f4" class="form-control">
-                            <label for="c4-f4">Pagos Extra desde Inicio</label>
-                            <p id="c4-f4-h" class="form-hint">(Opcional) Monto fijo adicional pagado en cada letra
-                                desde el inicio del préstamo.  Se asume que es $0.</p>
-                            <p id="c4-f4-v" class="form-validate hidden"></p>
-                        </div>
-                        <div class="md-form">
-                            <input type="number" id="c4-f5" class="form-control">
-                            <label for="c4-f5">Abono Extraordinario</label>
-                            <p id="c4-f5-h" class="form-hint">(Opcional) Monto de un solo abono extraordinario,
-                                pagado en un mes determinado.  Se asume que es $0.</p>
-                            <p id="c4-f5-v" class="form-validate hidden"></p>
-                        </div>
-                        <div class="md-form">
-                            <input type="number" id="c4-f6" class="form-control">
-                            <label for="c4-f6">En el Mes</label>
-                            <p id="c4-f6-h" class="form-hint">(Opcional) Número del mes en el que se realiza el
-                                ahorro extraordinario.</p>
-                            <p id="c4-f6-v" class="form-validate hidden"></p>
-                        </div>
-                        <button class="btn btn-primary" onclick="app.c4();">Calcular</button>
                     </div>
                 </div>
 
@@ -517,6 +523,8 @@
                     </div>
                 </div>
             </div>
+
+            <!-- TODO: Add Calculadora 5 - Calculadora de Tiempo para Pagar -->
             <div class="calc-container" id="c5">
                 <h5 class="section-title st-mdb">Calculadora de Tiempo para Pagar Préstamo</h5>
 
@@ -572,60 +580,79 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Calculadora 6 - Calculadora de Tasa de Interes Real -->
             <div class="calc-container" id="c6">
                 <h5 class="section-title st-mdb">Calculadora de Tasa de Interés Real</h5>
 
                 <div class="row">
-                    <div class="col-md-7">
-                        <div class="card card-block">
-                            <h4 class="card-title">1. Instrucciones</h4>
-                            <hr class="m-t-2 m-b-2">
-                            <p class="card-text">Utilice esta calculadora para estimar la tasa de interés de un préstamo,
-                                a partir de los siguientes parmámetros:</p>
-                            <dl class="">
-                                <dt class="col-sm-5">Monto del Préstamo</dt>
-                                <dd class="col-sm-7">Es la cantidad total prestada por el banco o
-                                    institución financiera.</dd>
-                                <dt class="col-sm-5">Duración</dt>
-                                <dd class="col-sm-7">Es el número de años otorgados para pagar el préstamo.</dd>
-                                <dt class="col-sm-5">Letra Mensual</dt>
-                                <dd class="col-sm-7">Es el monto abonado mensualmente al préstamo.</dd>
-                            </dl>
-                        </div>
+                    <div class="col-md-12">
+                        <p class="calc-summary">Utilice esta calculadora para estimar la tasa de interés
+                            de un préstamo.</p>
                     </div>
+                </div>
 
-                    <div class="col-md-5">
-                        <div class="card card-block">
-                            <h4 class="card-title">2. Parámetros</h4>
+                <!-- Params -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div id="c6-params" class="card card-block params-card">
+                            <h4 class="card-title">Ingrese los valores a calcular:</h4>
                             <hr class="m-t-2 m-b-2">
                             <div class="md-form">
-                                <input placeholder="" type="number" id="c6-f1" class="form-control">
-                                <label for="c6-f1">Monto del Préstamo</label>
+                                <input type="number" id="c6-f1" class="form-control">
+                                <label for="c6-f1">Monto del Préstamo *</label>
+                                <p id="c6-f1-h" class="form-hint">(Requerido) Cantidad total prestada por el banco o
+                                    institución financiera.</p>
+                                <p id="c6-f1-v" class="form-validate hidden"></p>
                             </div>
                             <div class="md-form">
-                                <input placeholder="" type="number" id="c6-f2" class="form-control">
-                                <label for="c6-f2">Duración (en años)</label>
+                                <input type="number" id="c6-f2" class="form-control">
+                                <label for="c6-f2">Duración *</label>
+                                <p id="c6-f2-h" class="form-hint">(Requerido) Número de años otorgados para
+                                    pagar el préstamo.</p>
+                                <p id="c6-f2-v" class="form-validate hidden"></p>
                             </div>
                             <div class="md-form">
-                                <input placeholder="" type="number" id="c6-f3" class="form-control">
-                                <label for="c6-f3">Letra Mensual</label>
+                                <input type="number" id="c6-f3" class="form-control">
+                                <label for="c6-f3">Letra Mensual *</label>
+                                <p id="c6-f3-h" class="form-hint">(Requerido) Abono mensual requerido por el
+                                    banco o institución financiera.</p>
+                                <p id="c6-f3-v" class="form-validate hidden"></p>
                             </div>
                             <button class="btn btn-primary" onclick="app.c6();">Calcular</button>
                         </div>
                     </div>
                 </div>
 
+                <!-- Results -->
                 <div class="row">
                     <div class="col-md-12">
-                        <div id="c6-results" class="card card-block">
-                            <h4 class="card-title">3. Resultados</h4>
+                        <div id="c6-results" class="card card-block hidden result-card">
+                            <h4 class="card-title">
+                                Resultados
+                                <button class="btn-flat waves-effect pull-right"
+                                        data-toggle="tooltip" data-placement="bottom" title="Modificar Parámetros">
+                                    <i class="fa fa-arrow-left right" onclick="app.calcBack(6)"></i></button>
+                                <button class="btn-flat waves-effect pull-right"
+                                        data-toggle="tooltip" data-placement="bottom" title="Imprimir">
+                                    <i class="fa fa-print"></i></button>
+                            </h4>
                             <hr class="m-t-2 m-b-2">
-                            <p>No hay resultados por el momento.  Ingrese los párametros del paso 2
-                                y haga click en calcular</p>
+                            <p id="c6-results-p1">Un préstamo otorgado bajo las siguientes condiciones:</p>
+                            <ul id="c6-criteria-list">
+
+                            </ul>
+                            <p id="c6-results-p2"></p>
+                            <ul id="c6-result-list">
+
+                            </ul>
+                            <p id="c6-results-p3"></p>
                         </div>
                     </div>
                 </div>
             </div>
+
+
             <div class="calc-container" id="c7">
                 <h5 class="section-title st-mdb">Calculadora de Fondo de Jubilación con Retiros Períodicos</h5>
 

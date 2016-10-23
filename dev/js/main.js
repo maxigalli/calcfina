@@ -62,13 +62,13 @@
                 if (isNaN(obj.value) || !isFinite(obj.value)) {
                     msg += 'Este campo debe contener un valor num&eacute;rico';
                     if (obj.lowLimit) {
-                        msg += ' igual o mayor que ' + obj.lowLimit;
+                        msg += ' igual o mayor que ' + app.numbersWithCommas(obj.lowLimit, 2);
                         if (obj.highLimit) {
                             msg += ' e';
                         }
                     }
                     if (obj.highLimit) {
-                        msg += '  igual o menor que ' + obj.highLimit;
+                        msg += '  igual o menor que ' + app.numbersWithCommas(obj.highLimit, 2);
                     }
                     msg += '.';
                 } else {
@@ -77,11 +77,12 @@
                         (obj.highLimit != null && obj.value > obj.highLimit)) {
                         msg += 'Este campo debe contener un n&uacute;mero ';
                         if (obj.lowLimit != null && obj.highLimit != null) {
-                            msg += 'entre ' + obj.lowLimit + ' y ' + obj.highLimit + '.';
+                            msg += 'entre ' + app.numbersWithCommas(obj.lowLimit, 2) + ' y ' +
+                                app.numbersWithCommas(obj.highLimit, 2) + '.';
                         } else if (obj.lowLimit != null && obj.highLimit == null) {
-                            msg += 'igual o mayor que ' + obj.lowLimit;
+                            msg += 'igual o mayor que ' + app.numbersWithCommas(obj.lowLimit, 2);
                         } else if (obj.lowLimit == null && obj.highLimit != null) {
-                            msg += 'igual o menor que ' + obj.highLimit;
+                            msg += 'igual o menor que ' + app.numbersWithCommas(obj.highLimit, 2);
                         }
                     }
                 }
@@ -607,15 +608,77 @@
     };
 
     app.c6 = function() {
-        var nper = parseFloat(document.getElementById('c6-f2').value * 12);
-        var pmt = parseFloat(document.getElementById('c6-f3').value);
-        var pv = parseFloat(document.getElementById('c6-f1').value);
-        var result =  app.financialFuncs.rate(nper, -pmt, pv);
+        var crMsg = '';
+        var rsMsg = '';
+        var p2Msg = '';
+        var validationFailed = false;
+        var intRate = null;
+        var loanAm = {
+            value: isNaN(parseFloat(document.getElementById('c6-f1').value))
+                ? null
+                : parseFloat(Math.round(parseFloat(document.getElementById('c6-f1').value) * 100) / 100),
+            required: true,
+            type: 'number',
+            lowLimit: 0,
+            highLimit: null,
+            target: '#c6-f1'
+        };
+        var durac = {
+            value: isNaN(parseFloat(document.getElementById('c6-f2').value))
+                ? null
+                : parseFloat(document.getElementById('c6-f2').value),
+            required: true,
+            type: 'number',
+            lowLimit: 1,
+            highLimit: null,
+            target: '#c6-f2'
+        };
+        var pmt = {
+            value: isNaN(parseFloat(document.getElementById('c6-f3').value))
+                ? null
+                : parseFloat(Math.round(parseFloat(document.getElementById('c6-f3').value) * 100) / 100),
+            required: true,
+            type: 'number',
+            lowLimit: loanAm.value / (12 * durac.value),
+            highLimit: -1 * app.financialFuncs.pmt(100 /(100 * 12), durac.value * 12, loanAm.value),
+            target: '#c6-f3'
+        };
 
-        if (result) {
-            console.log(result * 12);
-        } else {
-            console.log('no result found');
+        // Performs validation for each form field.
+        if (!app.validate(loanAm)) {
+            validationFailed = true;
+        }
+
+        if (!app.validate(durac)) {
+            validationFailed = true;
+        }
+
+        if (!app.validate(pmt)) {
+            validationFailed = true;
+        }
+
+        // Calculates only if the validation did not fail.
+        if (!validationFailed) {
+            intRate =  app.financialFuncs.rate(durac.value * 12, -pmt.value, loanAm.value);
+            if (intRate) {
+                crMsg += '<li>Monto del pr&eacute;stamo de <strong>$' + app.numbersWithCommas(loanAm.value, 2) +
+                    '</strong></li>';
+                crMsg += '<li>Con una letra mensual de <strong>$' + app.numbersWithCommas(pmt.value, 2) +
+                    '</strong></li>';
+                crMsg += '<li>Durante <strong>' + app.numbersWithCommas(durac.value) + '</strong> a&ntilde;os</li>';
+                p2Msg += 'Tiene una tasa de inter&eacute;s real de <strong>' +
+                    app.numbersWithCommas(intRate * 12 * 100, 2) + '%</strong>.';
+            } else {
+                console.log('no result found');
+            }
+
+            // Writes results to DOM.
+            $('#c6-criteria-list').html(crMsg);
+            $('#c6-results-p2').html(p2Msg);
+
+            $('#c6-params').addClass('hidden');
+            $('#c6-results').removeClass('hidden');
+            $('html,body').scrollTop(0);
         }
     };
 
