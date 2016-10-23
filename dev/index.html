@@ -119,6 +119,7 @@
                     </div>
                 </div>
 
+                <!-- Params -->
                 <div class="row">
                     <div class="col-md-12">
                         <div id="c1-params" class="card card-block params-card">
@@ -186,6 +187,7 @@
                     </div>
                 </div>
 
+                <!-- Results -->
                 <div class="row">
                     <div class="col-md-12">
                         <div id="c1-results" class="card card-block hidden result-card">
@@ -237,99 +239,102 @@
                             a una tasa de interés fija.</p>
                     </div>
                 </div>
-                    <div class="col-md-12">
-                        <div id="c2-params" class="card card-block params-card">
-                            <h4 class="card-title">Ingrese los valores a calcular:</h4>
-                            <hr class="m-t-2 m-b-2">
-                            <div class="md-form">
-                                <input type="number" id="c2-f1" class="form-control">
-                                <label for="c1-f1">Meta *</label>
-                                <p id="c2-f1-h" class="form-hint">(Requerido) Monto en dólares que desea tener al final
-                                    de la duración del ahorro.</p>
-                                <p id="c2-f1-v" class="form-validate hidden"></p>
-                            </div>
-                            <div class="md-form">
-                                <input type="number" id="c2-f2" class="form-control">
-                                <label for="c1-f2">Cantidad Inicial *</label>
-                                <p id="c2-f2-h" class="form-hint">(Requerido) Monto con el que se abre la cuenta de
-                                    ahorros.</p>
-                                <p id="c2-f2-v" class="form-validate hidden"></p>
-                            </div>
-                            <div class="md-form">
-                                <select class="mdb-select" id="c2-f3" >
-                                    <option value="1">Anual</option>
-                                    <option value="2">Semi-anual</option>
-                                    <option value="3">Cuatrimestral</option>
-                                    <option value="6">Bimestral</option>
-                                    <option value="12" selected>Mensual</option>
-                                    <option value="24">Quincenal</option>
-                                    <option value="26">Bi-semanal</option>
-                                    <option value="52">Semanal</option>
-                                    <option value="360">Diario</option>
-                                </select>
-                                <label for="c2-f3">Frecuencia *</label>
-                                <p id="c2-f3-h" class="form-hint">(Requerido) Periodicidad con la que se hacen los
-                                    aportes fijos.</p>
-                            </div>
-                            <div class="md-form">
-                                <input type="number" id="c2-f4" class="form-control">
-                                <label for="c2-f4">Duración *</label>
-                                <p id="c2-f4-h" class="form-hint">(Requerido) Número de años que durarán
-                                    los aportes.</p>
-                                <p id="c2-f4-v" class="form-validate hidden"></p>
-                            </div>
-                            <div class="md-form">
-                                <input type="number" id="c2-f5" class="form-control">
-                                <label for="c2-f5">Interés *</label>
-                                <p id="c2-f5-h" class="form-hint">(Requerido) Tasa fija de interés anual que
-                                    paga la cuenta de ahorros.</p>
-                                <p id="c2-f5-v" class="form-validate hidden"></p>
-                            </div>
-                            <button class="btn btn-primary" onclick="app.c2();">Calcular</button>
+
+                <!-- Params -->
+                <div class="col-md-12">
+                    <div id="c2-params" class="card card-block params-card">
+                        <h4 class="card-title">Ingrese los valores a calcular:</h4>
+                        <hr class="m-t-2 m-b-2">
+                        <div class="md-form">
+                            <input type="number" id="c2-f1" class="form-control">
+                            <label for="c2-f1">Meta *</label>
+                            <p id="c2-f1-h" class="form-hint">(Requerido) Monto en dólares que desea tener al final
+                                de la duración del ahorro.</p>
+                            <p id="c2-f1-v" class="form-validate hidden"></p>
                         </div>
+                        <div class="md-form">
+                            <input type="number" id="c2-f2" class="form-control">
+                            <label for="c2-f2">Cantidad Inicial *</label>
+                            <p id="c2-f2-h" class="form-hint">(Requerido) Monto con el que se abre la cuenta de
+                                ahorros.</p>
+                            <p id="c2-f2-v" class="form-validate hidden"></p>
+                        </div>
+                        <div class="md-form">
+                            <select class="mdb-select" id="c2-f3" >
+                                <option value="1">Anual</option>
+                                <option value="2">Semi-anual</option>
+                                <option value="3">Cuatrimestral</option>
+                                <option value="6">Bimestral</option>
+                                <option value="12" selected>Mensual</option>
+                                <option value="24">Quincenal</option>
+                                <option value="26">Bi-semanal</option>
+                                <option value="52">Semanal</option>
+                                <option value="360">Diario</option>
+                            </select>
+                            <label for="c2-f3">Frecuencia *</label>
+                            <p id="c2-f3-h" class="form-hint">(Requerido) Periodicidad con la que se hacen los
+                                aportes fijos.</p>
+                        </div>
+                        <div class="md-form">
+                            <input type="number" id="c2-f4" class="form-control">
+                            <label for="c2-f4">Duración *</label>
+                            <p id="c2-f4-h" class="form-hint">(Requerido) Número de años que durarán
+                                los aportes.</p>
+                            <p id="c2-f4-v" class="form-validate hidden"></p>
+                        </div>
+                        <div class="md-form">
+                            <input type="number" id="c2-f5" class="form-control">
+                            <label for="c2-f5">Interés *</label>
+                            <p id="c2-f5-h" class="form-hint">(Requerido) Tasa fija de interés anual que
+                                paga la cuenta de ahorros.</p>
+                            <p id="c2-f5-v" class="form-validate hidden"></p>
+                        </div>
+                        <button class="btn btn-primary" onclick="app.c2();">Calcular</button>
                     </div>
                 </div>
 
-            <div class="row">
-                <div class="col-md-12">
-                    <div id="c2-results" class="card card-block hidden result-card">
-                        <h4 class="card-title">
-                            Resultados
-                            <button class="btn-flat waves-effect pull-right"
-                                    data-toggle="tooltip" data-placement="bottom" title="Modificar Parámetros">
-                                <i class="fa fa-arrow-left right" onclick="app.calcBack(2)"></i></button>
-                            <button class="btn-flat waves-effect pull-right"
-                                    data-toggle="tooltip" data-placement="bottom" title="Imprimir">
-                                <i class="fa fa-print"></i></button>
-                        </h4>
-                        <hr class="m-t-2 m-b-2">
-                        <p id="c2-results-p1">Para alcanzar su objetivo de ahorro, según el siguiente criterio:</p>
-                        <ul id="c2-criteria-list">
+                <!-- Results -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div id="c2-results" class="card card-block hidden result-card">
+                            <h4 class="card-title">
+                                Resultados
+                                <button class="btn-flat waves-effect pull-right"
+                                        data-toggle="tooltip" data-placement="bottom" title="Modificar Parámetros">
+                                    <i class="fa fa-arrow-left right" onclick="app.calcBack(2)"></i></button>
+                                <button class="btn-flat waves-effect pull-right"
+                                        data-toggle="tooltip" data-placement="bottom" title="Imprimir">
+                                    <i class="fa fa-print"></i></button>
+                            </h4>
+                            <hr class="m-t-2 m-b-2">
+                            <p id="c2-results-p1">Para alcanzar su objetivo de ahorro, según el siguiente criterio:</p>
+                            <ul id="c2-criteria-list">
 
-                        </ul>
-                        <p id="c2-results-p2"></p>
-                        <ul id="c2-result-list">
+                            </ul>
+                            <p id="c2-results-p2"></p>
+                            <ul id="c2-result-list">
 
-                        </ul>
-                        <p id="c2-results-p3"></p>
-                        <table class="table table-bordered table-hover">
-                            <thead class="thead-default">
-                            <tr>
-                                <th class="text-xs-center" id="c2-th-1">Mes</th>
-                                <th class="text-xs-center">Aporte</th>
-                                <th class="text-xs-center">Interés</th>
-                                <th class="text-xs-center">Balance</th>
-                            </tr>
-                            </thead>
-                            <tbody id="c2-tbody">
+                            </ul>
+                            <p id="c2-results-p3"></p>
+                            <table class="table table-bordered table-hover">
+                                <thead class="thead-default">
+                                <tr>
+                                    <th class="text-xs-center" id="c2-th-1">Mes</th>
+                                    <th class="text-xs-center">Aporte</th>
+                                    <th class="text-xs-center">Interés</th>
+                                    <th class="text-xs-center">Balance</th>
+                                </tr>
+                                </thead>
+                                <tbody id="c2-tbody">
 
-                            </tbody>
-                        </table>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
 
-
+            <!-- Calculadora 3 - Calculadora de Tiempo para llegar a Meta -->
             <div class="calc-container" id="c3">
                 <h5 class="section-title st-mdb">Calculadora de Tiempo para Llegar a Meta</h5>
 
@@ -408,79 +413,106 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Calculadora 4 - Calculadora de Préstamos -->
             <div class="calc-container" id="c4">
                 <h5 class="section-title st-mdb">Calculadora de Préstamos</h5>
 
                 <div class="row">
-                    <div class="col-md-7">
-                        <div class="card card-block">
-                            <h4 class="card-title">1. Instrucciones</h4>
-                            <hr class="m-t-2 m-b-2">
-                            <p class="card-text">Utilice esta calculadora para estimar la letra mensual, el total de
-                                intereses pagados y la tabla de amortización de un préstamo, a partir de los
-                                siguientes parmámetros:</p>
-                            <dl class="">
-                                <dt class="col-sm-5">Monto del Préstamo</dt>
-                                <dd class="col-sm-7">Es la cantidad total prestada por el banco o institución
-                                    financiera.</dd>
-                                <dt class="col-sm-5">Interés</dt>
-                                <dd class="col-sm-7">Es la tasa de interés anual.</dd>
-                                <dt class="col-sm-5">Duración</dt>
-                                <dd class="col-sm-7">Es el número de años otorgados para pagar el préstamo.</dd>
-                                <dt class="col-sm-5">Pagos Extra desde Inicio</dt>
-                                <dd class="col-sm-7">(Opcional) Es el monto fijo adicional pagado en cada letra desde
-                                    el inicio del préstamo.  Se asume que es $0.  Si se ingresa un valor, calcula
-                                    en cuanto tiempo menos se cancelaría el préstamo y el monto en intereses
-                                    ahorrados.</dd>
-                                <dt class="col-sm-5">Abono Extraordinario</dt>
-                                <dd class="col-sm-7">(Opcional) Es el monto de un solo abono extraordinario
-                                    pagado en un mes determinado.  Se asume que es $0.  Si se ingresa un valor, calcula
-                                    en cuanto tiempo menos se cancelaría el préstamo y el monto en intereses
-                                    ahorrados.</dd>
-                            </dl>
-                        </div>
-                    </div>
-
-                    <div class="col-md-5">
-                        <div class="card card-block">
-                            <h4 class="card-title">2. Parámetros</h4>
-                            <hr class="m-t-2 m-b-2">
-                            <div class="md-form">
-                                <input placeholder="" type="number" id="c4-f1" class="form-control">
-                                <label for="c4-f1">Monto del Préstamo</label>
-                            </div>
-                            <div class="md-form">
-                                <input placeholder="" type="number" id="c4-f2" class="form-control">
-                                <label for="c4-f2">Interés</label>
-                            </div>
-                            <div class="md-form">
-                                <input placeholder="" type="number" id="c4-f3" class="form-control">
-                                <label for="c4-f3">Duración (en años)</label>
-                            </div>
-                            <div class="md-form">
-                                <input placeholder="" type="number" id="c4-f4" class="form-control">
-                                <label for="c4-f4">Pagos Extra desde Inicio</label>
-                            </div>
-                            <div class="md-form">
-                                <input placeholder="" type="number" id="c4-f5" class="form-control">
-                                <label for="c4-f5">Abono Extraordinario</label>
-                            </div>
-                            <div class="md-form">
-                                <input placeholder="" type="number" id="c4-f6" class="form-control">
-                                <label for="c4-f6">En Mes</label>
-                            </div>
-                            <button class="btn btn-primary" onclick="app.c4();">Calcular</button>
-                        </div>
+                    <div class="col-md-12">
+                        <p class="calc-summary">Utilice esta calculadora para estimar la letra mensual, el total de
+                            intereses pagados y la tabla de amortización de un préstamo.</p>
                     </div>
                 </div>
 
+                <!-- Params -->
+                <div class="col-md-12">
+                    <div id="c4-params" class="card card-block params-card">
+                        <h4 class="card-title">Ingrese los valores a calcular:</h4>
+                        <hr class="m-t-2 m-b-2">
+                        <div class="md-form">
+                            <input type="number" id="c4-f1" class="form-control">
+                            <label for="c4-f1">Monto del Préstamo *</label>
+                            <p id="c4-f1-h" class="form-hint">(Requerido) Cantidad total prestada por el banco o
+                                institución financiera.</p>
+                            <p id="c4-f1-v" class="form-validate hidden"></p>
+                        </div>
+                        <div class="md-form">
+                            <input type="number" id="c4-f2" class="form-control">
+                            <label for="c4-f2">Interés *</label>
+                            <p id="c4-f2-h" class="form-hint">(Requerido) Tasa fija de interés anual.</p>
+                            <p id="c4-f2-v" class="form-validate hidden"></p>
+                        </div>
+                        <div class="md-form">
+                            <input type="number" id="c4-f3" class="form-control">
+                            <label for="c4-f3">Duración *</label>
+                            <p id="c4-f3-h" class="form-hint">(Requerido) Número de años otorgados para
+                                pagar el préstamo.</p>
+                            <p id="c4-f3-v" class="form-validate hidden"></p>
+                        </div>
+                        <div class="md-form">
+                            <input type="number" id="c4-f4" class="form-control">
+                            <label for="c4-f4">Pagos Extra desde Inicio</label>
+                            <p id="c4-f4-h" class="form-hint">(Opcional) Monto fijo adicional pagado en cada letra
+                                desde el inicio del préstamo.  Se asume que es $0.</p>
+                            <p id="c4-f4-v" class="form-validate hidden"></p>
+                        </div>
+                        <div class="md-form">
+                            <input type="number" id="c4-f5" class="form-control">
+                            <label for="c4-f5">Abono Extraordinario</label>
+                            <p id="c4-f5-h" class="form-hint">(Opcional) Monto de un solo abono extraordinario,
+                                pagado en un mes determinado.  Se asume que es $0.</p>
+                            <p id="c4-f5-v" class="form-validate hidden"></p>
+                        </div>
+                        <div class="md-form">
+                            <input type="number" id="c4-f6" class="form-control">
+                            <label for="c4-f6">En el Mes</label>
+                            <p id="c4-f6-h" class="form-hint">(Opcional) Número del mes en el que se realiza el
+                                ahorro extraordinario.</p>
+                            <p id="c4-f6-v" class="form-validate hidden"></p>
+                        </div>
+                        <button class="btn btn-primary" onclick="app.c4();">Calcular</button>
+                    </div>
+                </div>
+
+                <!-- Results -->
                 <div class="row">
                     <div class="col-md-12">
-                        <div id="c4-results" class="card card-block">
-                            <h4 class="card-title">3. Resultados</h4>
+                        <div id="c4-results" class="card card-block hidden result-card">
+                            <h4 class="card-title">
+                                Resultados
+                                <button class="btn-flat waves-effect pull-right"
+                                        data-toggle="tooltip" data-placement="bottom" title="Modificar Parámetros">
+                                    <i class="fa fa-arrow-left right" onclick="app.calcBack(4)"></i></button>
+                                <button class="btn-flat waves-effect pull-right"
+                                        data-toggle="tooltip" data-placement="bottom" title="Imprimir">
+                                    <i class="fa fa-print"></i></button>
+                            </h4>
                             <hr class="m-t-2 m-b-2">
-                            <p>No hay resultados por el momento.  Ingrese los párametros del paso 2
-                                y haga click en calcular</p>
+                            <p id="c4-results-p1">Para cancelar el siguiente préstamo:</p>
+                            <ul id="c4-criteria-list">
+
+                            </ul>
+                            <p id="c4-results-p2"></p>
+                            <ul id="c4-result-list">
+
+                            </ul>
+                            <p id="c4-results-p3"></p>
+                            <table class="table table-bordered table-hover">
+                                <thead class="thead-default">
+                                <tr>
+                                    <th class="text-xs-center" id="c4-th-1">Mes</th>
+                                    <th class="text-xs-center">Letra</th>
+                                    <th class="text-xs-center">Pago Adicional</th>
+                                    <th class="text-xs-center">Interés Pagado</th>
+                                    <th class="text-xs-center">Capital Pagado</th>
+                                    <th class="text-xs-center">Balance</th>
+                                </tr>
+                                </thead>
+                                <tbody id="c4-tbody">
+
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>

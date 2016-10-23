@@ -273,6 +273,7 @@
 
             $('#c1-params').addClass('hidden');
             $('#c1-results').removeClass('hidden');
+            $('html,body').scrollTop(0);
         }
     };
 
@@ -397,14 +398,8 @@
 
             $('#c2-params').addClass('hidden');
             $('#c2-results').removeClass('hidden');
+            $('html,body').scrollTop(0);
         }
-
-        console.log(goal.value);
-        console.log(cini.value);
-        console.log(freq.value);
-        console.log(durac.value);
-        console.log(int.value);
-        console.log(result);
     };
 
     app.c3 = function() {
@@ -413,22 +408,197 @@
     };
 
     app.c4 = function() {
-        var loanAm = parseFloat(document.getElementById('c4-f1').value);
-        var int = parseFloat(document.getElementById('c4-f2').value);
-        var durac = parseFloat(document.getElementById('c4-f3').value);
+        var balance = 0;
+        var interest = 0;
+        var capital = 0;
+        var interestPaid = 0;
+        var crMsg = '';
+        var rsMsg = '';
+        var p2Msg = '';
+        var p3Msg = '';
+        var tblContent = '';
+        var validationFailed = false;
+        var loanPmt = 0;
+        var totalPaid = 0;
+        var intPaid = 0;
+        var nterm = 0;
+
         var freq = 12;
+        var loanAm = {
+            value: isNaN(parseFloat(document.getElementById('c4-f1').value))
+                ? null
+                : parseFloat(Math.round(parseFloat(document.getElementById('c4-f1').value) * 100) / 100),
+            required: true,
+            type: 'number',
+            lowLimit: 0,
+            highLimit: null,
+            target: '#c4-f1'
+        };
+        var int = {
+            value: isNaN(parseFloat(document.getElementById('c4-f2').value))
+                ? null
+                : parseFloat(Math.round(document.getElementById('c4-f2').value * 100) / 100),
+            required: true,
+            type: 'number',
+            lowLimit: 0,
+            highLimit: 100,
+            target: '#c4-f2'
+        };
+        var durac = {
+            value: isNaN(parseFloat(document.getElementById('c4-f3').value))
+                ? null
+                : parseFloat(document.getElementById('c4-f3').value),
+            required: true,
+            type: 'number',
+            lowLimit: 1,
+            highLimit: null,
+            target: '#c4-f3'
+        };
+        var aextrainit = {
+            value: isNaN(parseFloat(document.getElementById('c4-f4').value))
+                ? 0
+                : parseFloat(Math.round(document.getElementById('c4-f4').value * 100) / 100),
+            required: false,
+            type: 'number',
+            lowLimit: 0,
+            highLimit: null,
+            target: '#c4-f4'
+        };
+        var aextra = {
+            value: isNaN(parseFloat(document.getElementById('c4-f5').value))
+                ? null
+                : parseFloat(Math.round(document.getElementById('c4-f5').value * 100) / 100),
+            required: false,
+            type: 'number',
+            lowLimit: 0,
+            highLimit: null,
+            target: '#c4-f5'
+        };
+        var mextra = {
+            value: isNaN(parseInt(document.getElementById('c4-f6').value))
+                ? null
+                : parseInt(document.getElementById('c4-f6').value),
+            required: aextra.value != null,
+            requiredMsg: 'Si va a hacer un ahorro extraordinario, debe ingresar el n&uacute;mero del ' +
+            'mes en que lo realizar&aacute;.',
+            type: 'number',
+            lowLimit: 1,
+            highLimit: durac.value * freq,
+            target: '#c4-f6'
+        };
 
-        loanPmt = -1 * app.financialFuncs.pmt(int/(100 * freq), durac * freq, loanAm);
-        totalPaid = durac * freq * loanPmt;
-        intPaid = totalPaid - loanAm;
+        // Performs validation for each form field.
+        if (!app.validate(loanAm)) {
+            validationFailed = true;
+        }
 
+        if (!app.validate(int)) {
+            validationFailed = true;
+        }
 
-        console.log(loanAm);
-        console.log(int);
-        console.log(durac);
-        console.log(loanPmt);
-        console.log(totalPaid);
-        console.log(intPaid);
+        if (!app.validate(durac)) {
+            validationFailed = true;
+        }
+
+        if (!app.validate(aextrainit)) {
+            validationFailed = true;
+        }
+
+        if (!app.validate(aextra)) {
+            validationFailed = true;
+        }
+
+        if (!app.validate(mextra)) {
+            validationFailed = true;
+        }
+
+        // Calculates only if the validation did not fail.
+        if (!validationFailed) {
+            loanPmt = -1 * app.financialFuncs.pmt(int.value /(100 * freq), durac.value * freq, loanAm.value);
+            totalPaid = durac.value * freq * loanPmt;
+            intPaid = totalPaid - loanAm.value;
+            balance = loanAm.value;
+
+            tblContent += '<tr><td class="text-xs-center">0</td><td></td><td><td></td></td><td></td>' +
+                '<td class="text-xs-right">' + app.numbersWithCommas(loanAm.value, 2)+ '</td></tr>';
+
+            // Calculates the rows of the result table and the final balance.
+            for (var i = 0; i < freq * durac.value; i++) {
+                var p = i + 1;
+                var a = aextrainit.value;
+                var pmt = loanPmt;
+                var endLoop = false;
+                nterm++;
+                interest = balance * (int.value / (100 * freq));
+                interestPaid += interest;
+                if (mextra.value == p) {
+                    a += aextra.value;
+                }
+                if (balance + interest < pmt + a) {
+                    if (balance + interest < pmt) {
+                        pmt = balance + interest;
+                        a = 0;
+                    } else {
+                        a = balance + interest - pmt;
+                    }
+                    endLoop = true;
+                }
+                capital = pmt + a - interest;
+                balance -= capital;
+                tblContent += '<tr><td class="text-xs-center">' + p +
+                    '</td><td class="text-xs-right">' + app.numbersWithCommas(pmt, 2) +
+                    '</td><td class="text-xs-right">' + app.numbersWithCommas(a, 2) +
+                    '</td><td class="text-xs-right">' + app.numbersWithCommas(interest, 2) +
+                    '</td><td class="text-xs-right">' + app.numbersWithCommas(capital, 2) +
+                    '</td><td class="text-xs-right">' + app.numbersWithCommas(balance, 2) + '</td></tr>';
+                if (endLoop) {
+                    break;
+                }
+            }
+
+            crMsg += '<li>Monto del pr&eacute;stamo de <strong>$' + app.numbersWithCommas(loanAm.value, 2) +
+                '</strong></li>';
+            crMsg += '<li>Con tasa de inter&eacute;s anual del <strong>' + int.value.toFixed(2) + '%</strong></li>';
+            crMsg += '<li>Durante <strong>' + app.numbersWithCommas(durac.value) + '</strong> a&ntilde;os</li>';
+            p2Msg += 'Usted tendr&aacute; que pagar una letra mensual de <strong>$' +
+                app.numbersWithCommas(loanPmt, 2) + '</strong>.  Durante la vida del pr&eacute;stamo, usted' +
+                ' realizar&aacute; pagos por un total de <strong>$' + app.numbersWithCommas(totalPaid, 2) +
+                '</strong>, correspondientes a <strong>$'+ app.numbersWithCommas(intPaid, 2) + '</strong> de intereses' +
+                ' y <strong>$' + app.numbersWithCommas(loanAm.value, 2) + '</strong> de capital.';
+
+            if (aextrainit.value != 0) {
+                p3Msg += 'Si usted realiza pagos adicionales de <strong>$' + app.numbersWithCommas(aextrainit.value, 2) +
+                    '</strong> mensuales';
+                if (aextra.value) {
+                    p3Msg += ' y un pago extraordinario de <strong>$' + app.numbersWithCommas(aextra.value, 2) +
+                            '</strong> en el mes <strong>' + app.numbersWithCommas(mextra.value) + '</strong>, ';
+                } else {
+                    p3Msg += ', ';
+                }
+                p3Msg += 'el pr&eacute;stamo quedar&aacute; cancelado en <strong>' + app.numbersWithCommas(nterm) +
+                        '</strong> meses, ahorrando <strong>' + app.numbersWithCommas(freq * durac.value - nterm) +
+                        '</strong> meses y <strong>$' + app.numbersWithCommas(intPaid - interestPaid, 2) +
+                        '</strong> en intereses.'
+            } else if (aextra.value) {
+                p3Msg += 'Si usted realiza un pago extraordinario de <strong>$' + app.numbersWithCommas(aextra.value, 2) +
+                    '</strong> en el mes <strong>' + app.numbersWithCommas(mextra.value) + '</strong>, ';
+                p3Msg += 'el pr&eacute;stamo quedar&eacute; cancelado en <strong>' + app.numbersWithCommas(nterm) +
+                    '</strong> meses, ahorrando <strong>' + app.numbersWithCommas(freq * durac.value - nterm) +
+                    '</strong> meses y <strong>$' + app.numbersWithCommas(intPaid - interestPaid, 2) +
+                    '</strong> en intereses.'
+            }
+
+            // Writes results to DOM.
+            $('#c4-criteria-list').html(crMsg);
+            $('#c4-results-p2').html(p2Msg);
+            $('#c4-result-list').html(rsMsg);
+            $('#c4-results-p3').html(p3Msg);
+            $('#c4-tbody').html(tblContent);
+
+            $('#c4-params').addClass('hidden');
+            $('#c4-results').removeClass('hidden');
+            $('html,body').scrollTop(0);
+        }
     };
 
     app.c5 = function() {
