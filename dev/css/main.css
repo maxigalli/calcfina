@@ -58,6 +58,10 @@ input[type="number"] {
     -moz-appearance: textfield;
 }
 
+.side-nav {
+    width: 300px;
+}
+
 .side-nav .logo-wrapper img {
     padding: 24px 32px;
 }
@@ -112,6 +116,10 @@ a.nav-link .fa {
 
 .thin-100 {
  font-weight: 100;
+}
+
+.thick-600 {
+    font-weight: 600;
 }
 
 footer.page-footer {
@@ -273,7 +281,7 @@ footer.page-footer .footer-copyright {
 @media only screen and (min-width: 993px) {
     main,
     footer {
-        padding-left: 240px;
+        padding-left: 300px;
     }
 
     .main-wrapper {

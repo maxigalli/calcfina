@@ -8,34 +8,34 @@
         if (per == 360) {
             return ['En el D&iacute;a',
                 'N&uacute;mero del d&iacute;a en el que se realiza el ahorro extraordinario.',
-                'Diarios', 'D&iacute;as', 'D&iacute;a'];
+                'Diarios', 'D&iacute;as', 'D&iacute;a', 'D&iacute;a'];
         } else if (per == 52) {
             return ['En la Semana', 'N&uacute;mero de la semana en la que se realiza el ahorro extraordinario.',
-                'Semanales', 'Semanas', 'Semana'];
+                'Semanales', 'Semanas', 'Semana', 'Semanal'];
         } else if (per == 26) {
             return ['En la Bisemana', 'N&uacute;mero de la bisemana en la que se realiza el ahorro extraordinario.',
-                'Bisemanales', 'Bisemanas', 'Bisemana'];
+                'Bisemanales', 'Bisemanas', 'Bisemana', 'Bisemanal'];
         } else if (per == 24) {
             return ['En la Quincena', 'N&uacute;mero de la quincena en la que se realiza el ahorro extraordinario.',
-                'Quincenales', 'Quincenas', 'Quincena'];
+                'Quincenales', 'Quincenas', 'Quincena', 'Quincenal'];
         } else if (per == 12) {
             return ['En el Mes', 'N&uacute;mero del mes en el que se realiza el ahorro extraordinario.',
-                'Mensuales', 'Meses', 'Mes'];
+                'Mensuales', 'Meses', 'Mes', 'Mensual'];
         } else if (per == 6) {
             return ['En el Bimestre', 'N&uacute;mero del bimestre en el que se realiza el ahorro extraordinario.',
-                'Bimestrales', 'Bimestres', 'Bimestre'];
+                'Bimestrales', 'Bimestres', 'Bimestre', 'Bimestral'];
         } else if (per == 3) {
             return ['En el Cuatrimestre',
                 'N&uacute;mero del cuatrimestre en el que se realiza el ahorro extraordinario.',
-                'Cuatrimestrales', 'Cuatrimestres', 'Cuatrimestre'];
+                'Cuatrimestrales', 'Cuatrimestres', 'Cuatrimestre', 'Cuatrimestral'];
         } else if (per == 2) {
             return ['En el Semestre',
                 'N&uacute;mero del semestre en el que se realiza el ahorro extraordinario.',
-                'Semestrales', 'Semestres', 'Semestre'];
+                'Semestrales', 'Semestres', 'Semestre', 'Semestral'];
         } else if (per == 1) {
             return ['En el A&ntilde;o',
                 'N&uacute;mero del a&ntildeo en el que se realiza el ahorro extraordinario.',
-                'Anuales', 'A&ntilde;os', 'A&ntilde;o'];
+                'Anuales', 'A&ntilde;os', 'A&ntilde;o', 'Anual'];
         }
     };
 
@@ -112,10 +112,6 @@
         var interestEarned = 0;
         var balance = 0;
         var interest = 0;
-        var crMsg = '';
-        var rsMsg = '';
-        var p2Msg = '';
-        var p3Msg = '';
         var tblContent = '';
         var validationFailed = false;
         var cini = {
@@ -172,7 +168,7 @@
                 : parseFloat(Math.round(document.getElementById('c1-f6').value * 100) / 100),
             required: false,
             type: 'number',
-            lowLimit: 1,
+            lowLimit: 0.01,
             highLimit: null,
             target: '#c1-f6'
         };
@@ -237,39 +233,18 @@
                     '</td><td class="text-xs-right">' + app.numbersWithCommas(balance, 2) + '</td></tr>';
             }
 
-            crMsg += '<li>Cantidad inicial de <strong>$' + app.numbersWithCommas(cini.value, 2) +
-                '</strong></li>';
-            crMsg += '<li>Aportes ' + app.getPeriodText(freq.value)[2].toLowerCase() +
-                ' de <strong>$' + app.numbersWithCommas(aper.value, 2) + '</strong></li>';
-            crMsg += '<li>Durante <strong>' + app.numbersWithCommas(durac.value * freq.value) + ' ' +
-                app.getPeriodText(freq.value)[3].toLowerCase() + '</strong></li>';
-            crMsg += '<li>Con tasa de inter&eacute;s anual del <strong>' + int.value.toFixed(2) + '%</strong></li>';
-            if (aextra.value != null) {
-                crMsg += '<li>Con un aporte extraordinario de <strong>$' + app.numbersWithCommas(aextra.value, 2) +
-                    '</strong> en ' + app.getPeriodText(freq.value)[4].toLowerCase() + ' <strong>' +
-                    mextra.value   + '</strong></li>';
-            }
-
-            p2Msg += 'Usted tendr&aacute;, al completar el &uacute;ltimo aporte, un balance de <strong>$' +
-                app.numbersWithCommas(balance, 2) + '</strong>, desglosados as&iacute;:</li>';
-
-            rsMsg += '<li>Cantidad inicial de <strong>$' + app.numbersWithCommas(cini.value, 2) + '</strong></li>';
-            rsMsg += '<li>Aportes per&iacute;odicos por un total de <strong>$'
-                + app.numbersWithCommas(durac.value * freq.value * aper.value, 2) + '</strong></li>';
-            if (aextra.value != null) {
-                rsMsg += '<li>Aporte extraordinario de <strong>$' +
-                    app.numbersWithCommas(aextra.value, 2) + '</strong></li>';
-            }
-            rsMsg += '<li>Intereses ganados por un total de <strong>$' +
-                app. numbersWithCommas(interestEarned, 2) + '</strong></li>';
-
-            p3Msg += 'A continuaci&oacute;n la proyecci&oacute;n de sus aportes e intereses:';
-
             // Writes results to DOM.
-            $('#c1-criteria-list').html(crMsg);
-            $('#c1-results-p2').html(p2Msg);
-            $('#c1-result-list').html(rsMsg);
-            $('#c1-results-p3').html(p3Msg);
+            $('#c1-p1').html('$' + app.numbersWithCommas(cini.value, 2));
+            $('#c1-p2').html('$' + app.numbersWithCommas(aper.value, 2));
+            $('#c1-p3').html(app.getPeriodText(freq.value)[5]);
+            $('#c1-p4').html(app.numbersWithCommas(durac.value * freq.value) + ' ' +
+                app.getPeriodText(freq.value)[3].toLowerCase());
+            $('#c1-p5').html(int.value.toFixed(2) + '%');
+            $('#c1-p6').html('$' + app.numbersWithCommas(aextra.value || 0, 2));
+            $('#c1-p7').html(mextra.value || 0);
+            $('#c1-p8').html('$' + app.numbersWithCommas(durac.value * freq.value * aper.value + cini.value + aextra.value, 2));
+            $('#c1-p9').html('$' + app. numbersWithCommas(interestEarned, 2));
+            $('#c1-p10').html('$' + app.numbersWithCommas(balance, 2));
             $('#c1-tbody').html(tblContent);
 
             $('#c1-params').addClass('hidden');
@@ -282,10 +257,6 @@
         var interestEarned = 0;
         var balance = 0;
         var interest = 0;
-        var crMsg = '';
-        var rsMsg = '';
-        var p2Msg = '';
-        var p3Msg = '';
         var tblContent = '';
         var validationFailed = false;
 
@@ -376,25 +347,15 @@
                     '</td><td class="text-xs-right">' + app.numbersWithCommas(balance, 2) + '</td></tr>';
             }
 
-            crMsg += '<li>Meta de ahorro de <strong>$' + app.numbersWithCommas(goal.value, 2) +
-                '</strong></li>';
-            crMsg += '<li>Cantidad inicial de <strong>$' + app.numbersWithCommas(cini.value, 2) +
-                '</strong></li>';
-            crMsg += '<li>Mediante aportes <strong>' + app.getPeriodText(freq.value)[2].toLowerCase() +
-                '</strong> durante <strong>' + app.numbersWithCommas(durac.value * freq.value) + '</strong> ' +
-                app.getPeriodText(freq.value)[3].toLowerCase() + '</li>';
-            crMsg += '<li>Recibiendo una tasa de inter&eacute;s anual del <strong>' + int.value.toFixed(2) +
-                '%</strong></li>';
-
-            p2Msg += 'Usted tendr&aacute; que realizar aportes ' + app.getPeriodText(freq.value)[2].toLowerCase() +
-                ' de <strong>$' + app.numbersWithCommas(result, 2) + '</strong>.';
-
-            p3Msg += 'A continuaci&oacute;n la proyecci&oacute;n de sus aportes e intereses:';
-
             // Writes results to DOM.
-            $('#c2-criteria-list').html(crMsg);
-            $('#c2-results-p2').html(p2Msg);
-            $('#c2-results-p3').html(p3Msg);
+            $('#c2-p1').html('$' + app.numbersWithCommas(goal.value, 2));
+            $('#c2-p2').html('$' + app.numbersWithCommas(cini.value, 2));
+            $('#c2-p3').html(app.getPeriodText(freq.value)[5]);
+            $('#c2-p4').html(app.numbersWithCommas(durac.value * freq.value) + ' ' +
+                app.getPeriodText(freq.value)[3].toLowerCase());
+            $('#c2-p5').html(int.value.toFixed(2) + '%');
+            $('#c2-p6').html('Aporte ' + app.getPeriodText(freq.value)[5]);
+            $('#c2-p7').html('$' + app.numbersWithCommas(result, 2));
             $('#c2-tbody').html(tblContent);
 
             $('#c2-params').addClass('hidden');
@@ -407,11 +368,6 @@
         var balance = 0;
         var interest = 0;
         var periods = 0;
-        var endLoop = false;
-        var crMsg = '';
-        var rsMsg = '';
-        var p2Msg = '';
-        var p3Msg = '';
         var tblContent = '';
         var validationFailed = false;
 
@@ -509,26 +465,15 @@
                 }
             }
 
-            crMsg += '<li>Meta de ahorro de <strong>$' + app.numbersWithCommas(goal.value, 2) +
-                '</strong></li>';
-            crMsg += '<li>Cantidad inicial de <strong>$' + app.numbersWithCommas(cini.value, 2) +
-                '</strong></li>';
-            crMsg += '<li>Mediante aportes <strong>' + app.getPeriodText(freq.value)[2].toLowerCase() +
-                '</strong> de <strong>$' + app.numbersWithCommas(aper.value, 2) + '</strong>.';
-            crMsg += '<li>Recibiendo una tasa de inter&eacute;s anual del <strong>' + int.value.toFixed(2) +
-                '%</strong></li>';
-
-            p2Msg += 'Usted tendr&aacute; que realizar <strong>' +  app.numbersWithCommas(periods) +
-                '</strong> aportes ' + app.getPeriodText(freq.value)[2].toLowerCase() +
-                '.  La meta la alcanzar&aacute; en <strong>' + app.numbersWithCommas(periods / freq.value, 2) +
-                '</strong> a&ntilde;os.';
-
-            p3Msg += 'A continuaci&oacute;n la proyecci&oacute;n de sus aportes e intereses:';
-
             // Writes results to DOM.
-            $('#c3-criteria-list').html(crMsg);
-            $('#c3-results-p2').html(p2Msg);
-            $('#c3-results-p3').html(p3Msg);
+            $('#c3-p1').html('$' + app.numbersWithCommas(goal.value, 2));
+            $('#c3-p2').html('$' + app.numbersWithCommas(cini.value, 2));
+            $('#c3-p3').html('$' + app.numbersWithCommas(aper.value, 2));
+            $('#c3-p4').html(app.getPeriodText(freq.value)[5]);
+            $('#c3-p5').html(int.value.toFixed(2) + '%');
+            $('#c3-p6').html('# de Aportes ' + app.getPeriodText(freq.value)[2]);
+            $('#c3-p7').html(app.numbersWithCommas(periods));
+            $('#c3-p8').html(app.numbersWithCommas(periods / freq.value, 2) + ' a&ntilde;os');
             $('#c3-tbody').html(tblContent);
 
             $('#c3-params').addClass('hidden');
@@ -542,10 +487,6 @@
         var interest = 0;
         var capital = 0;
         var interestPaid = 0;
-        var crMsg = '';
-        var rsMsg = '';
-        var p2Msg = '';
-        var p3Msg = '';
         var tblContent = '';
         var validationFailed = false;
         var loanPmt = 0;
@@ -686,44 +627,30 @@
                 }
             }
 
-            crMsg += '<li>Monto del pr&eacute;stamo de <strong>$' + app.numbersWithCommas(loanAm.value, 2) +
-                '</strong></li>';
-            crMsg += '<li>Con tasa de inter&eacute;s anual del <strong>' + int.value.toFixed(2) + '%</strong></li>';
-            crMsg += '<li>Durante <strong>' + app.numbersWithCommas(durac.value) + '</strong> a&ntilde;os</li>';
-            p2Msg += 'Usted tendr&aacute; que pagar una letra mensual de <strong>$' +
-                app.numbersWithCommas(loanPmt, 2) + '</strong>.  Durante la vida del pr&eacute;stamo, usted' +
-                ' realizar&aacute; pagos por un total de <strong>$' + app.numbersWithCommas(totalPaid, 2) +
-                '</strong>, correspondientes a <strong>$'+ app.numbersWithCommas(intPaid, 2) + '</strong> de intereses' +
-                ' y <strong>$' + app.numbersWithCommas(loanAm.value, 2) + '</strong> de capital.';
-
-            if (aextrainit.value != 0) {
-                p3Msg += 'Si usted realiza pagos adicionales de <strong>$' + app.numbersWithCommas(aextrainit.value, 2) +
-                    '</strong> mensuales';
-                if (aextra.value) {
-                    p3Msg += ' y un pago extraordinario de <strong>$' + app.numbersWithCommas(aextra.value, 2) +
-                            '</strong> en el mes <strong>' + app.numbersWithCommas(mextra.value) + '</strong>, ';
-                } else {
-                    p3Msg += ', ';
-                }
-                p3Msg += 'el pr&eacute;stamo quedar&aacute; cancelado en <strong>' + app.numbersWithCommas(nterm) +
-                        '</strong> meses, ahorrando <strong>' + app.numbersWithCommas(freq * durac.value - nterm) +
-                        '</strong> meses y <strong>$' + app.numbersWithCommas(intPaid - interestPaid, 2) +
-                        '</strong> en intereses.'
-            } else if (aextra.value) {
-                p3Msg += 'Si usted realiza un pago extraordinario de <strong>$' + app.numbersWithCommas(aextra.value, 2) +
-                    '</strong> en el mes <strong>' + app.numbersWithCommas(mextra.value) + '</strong>, ';
-                p3Msg += 'el pr&eacute;stamo quedar&eacute; cancelado en <strong>' + app.numbersWithCommas(nterm) +
-                    '</strong> meses, ahorrando <strong>' + app.numbersWithCommas(freq * durac.value - nterm) +
-                    '</strong> meses y <strong>$' + app.numbersWithCommas(intPaid - interestPaid, 2) +
-                    '</strong> en intereses.'
-            }
-
             // Writes results to DOM.
-            $('#c4-criteria-list').html(crMsg);
-            $('#c4-results-p2').html(p2Msg);
-            $('#c4-result-list').html(rsMsg);
-            $('#c4-results-p3').html(p3Msg);
+            $('#c4-p1').html('$' + app.numbersWithCommas(loanAm.value, 2));
+            $('#c4-p2').html(int.value.toFixed(2) + '%');
+            $('#c4-p3').html(app.numbersWithCommas(durac.value) + ' a&ntilde;os');
+            $('#c4-p4').html('$' + app.numbersWithCommas(loanPmt, 2));
+            $('#c4-p5').html('$' + app.numbersWithCommas(intPaid, 2));
+            $('#c4-p6').html('$' + app.numbersWithCommas(loanAm.value, 2));
+            $('#c4-p7').html('$' + app.numbersWithCommas(totalPaid, 2));
+            $('#c4-p8').html('$' + app.numbersWithCommas(aextrainit.value || 0, 2));
+            $('#c4-p9').html('$' + app.numbersWithCommas(aextra.value || 0, 2));
+            $('#c4-p10').html(app.numbersWithCommas(mextra.value || 0));
+            $('#c4-p11').html(app.numbersWithCommas(nterm) + ' meses');
+            $('#c4-p12').html('$' + app.numbersWithCommas(interestPaid, 2));
+            $('#c4-p13').html('$' + app.numbersWithCommas(loanAm.value, 2));
+            $('#c4-p14').html('$' + app.numbersWithCommas(loanAm.value + interestPaid, 2));
+            $('#c4-p15').html(app.numbersWithCommas(freq * durac.value - nterm) + ' meses');
+            $('#c4-p16').html('$' + app.numbersWithCommas(intPaid - interestPaid, 2));
             $('#c4-tbody').html(tblContent);
+
+            if (!aextrainit.value && !aextra.value ) {
+                $('.row-to-hide').addClass('hidden');
+            } else {
+                $('.row-to-hide').removeClass('hidden');
+            }
 
             $('#c4-params').addClass('hidden');
             $('#c4-results').removeClass('hidden');
@@ -737,9 +664,6 @@
     };
 
     app.c6 = function() {
-        var crMsg = '';
-        var rsMsg = '';
-        var p2Msg = '';
         var validationFailed = false;
         var intRate = null;
         var loanAm = {
@@ -789,21 +713,12 @@
         // Calculates only if the validation did not fail.
         if (!validationFailed) {
             intRate =  app.financialFuncs.rate(durac.value * 12, -pmt.value, loanAm.value);
-            if (intRate) {
-                crMsg += '<li>Monto del pr&eacute;stamo de <strong>$' + app.numbersWithCommas(loanAm.value, 2) +
-                    '</strong></li>';
-                crMsg += '<li>Con una letra mensual de <strong>$' + app.numbersWithCommas(pmt.value, 2) +
-                    '</strong></li>';
-                crMsg += '<li>Durante <strong>' + app.numbersWithCommas(durac.value) + '</strong> a&ntilde;os</li>';
-                p2Msg += 'Tiene una tasa de inter&eacute;s real de <strong>' +
-                    app.numbersWithCommas(intRate * 12 * 100, 2) + '%</strong>.';
-            } else {
-                console.log('no result found');
-            }
 
             // Writes results to DOM.
-            $('#c6-criteria-list').html(crMsg);
-            $('#c6-results-p2').html(p2Msg);
+            $('#c6-p1').html('$' + app.numbersWithCommas(loanAm.value, 2));
+            $('#c6-p2').html(app.numbersWithCommas(durac.value) + ' a&ntilde;os');
+            $('#c6-p3').html('$' + app.numbersWithCommas(pmt.value, 2));
+            $('#c6-p4').html(app.numbersWithCommas(intRate * 12 * 100, 2) + '%');
 
             $('#c6-params').addClass('hidden');
             $('#c6-results').removeClass('hidden');
@@ -831,6 +746,21 @@
 
     };
 
+    app.c11 = function() {
+
+
+    };
+
+    app.c12 = function() {
+
+
+    };
+
+    app.c13 = function() {
+
+
+    };
+
     app.showCalc = function(calc) {
         $('.calc-container').addClass('hidden');
         $('.result-card').addClass('hidden');
@@ -849,7 +779,7 @@
 
     $(document).ready(function() {
         // Initializes mdb sideNav.
-        $(".button-collapse").sideNav();
+        $(".button-collapse").sideNav({menuWidth: 300});
 
         // Initializes mdb material select.
         $('.mdb-select').material_select();

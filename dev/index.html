@@ -80,14 +80,23 @@
                     <ul>
                         <li><a href="#" onclick="app.showCalc('#c7')" class="waves-effect">Retiros Periódicos</a></li>
                         <li><a href="#" onclick="app.showCalc('#c8')" class="waves-effect">Duración de Retiros</a></li>
+                        <li><a href="#" onclick="app.showCalc('#c9')" class="waves-effect">Retiros hasta Agotar Fondo</a></li>
                     </ul>
                 </div>
             </li>
-            <li><a class="collapsible-header waves-effect">Tarjeta de Crédito</a>
+            <li><a class="collapsible-header waves-effect">De Tarjeta de Crédito</a>
                 <div class="collapsible-body">
                     <ul>
-                        <li><a href="#" onclick="app.showCalc('#c9')" class="waves-effect">Pagos Mínimos</a></li>
-                        <li><a href="#" onclick="app.showCalc('#c10')" class="waves-effect">Pagos Fijos</a></li>
+                        <li><a href="#" onclick="app.showCalc('#c10')" class="waves-effect">Pagos Mínimos</a></li>
+                        <li><a href="#" onclick="app.showCalc('#c11')" class="waves-effect">Pagos Fijos</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li><a class="collapsible-header waves-effect">De Inversión</a>
+                <div class="collapsible-body">
+                    <ul>
+                        <li><a href="#" onclick="app.showCalc('#c12')" class="waves-effect">Tasa de Interés Requerida</a></li>
+                        <li><a href="#" onclick="app.showCalc('#c13')" class="waves-effect">Valor Presente</a></li>
                     </ul>
                 </div>
             </li>
@@ -203,28 +212,77 @@
                                     <i class="fa fa-print"></i></button>
                             </h4>
                             <hr class="m-t-2 m-b-2">
-                            <p id="c1-results-p1">Si usted abre una cuenta de ahorros con el siguiente criterio:</p>
-                            <ul id="c1-criteria-list">
+                            <div class="row">
+                                <div class="col-md-7">
+                                    <table class="table table-bordered table-sm">
+                                        <thead class="thead-default">
+                                        <tr>
+                                            <th class="text-xs-center">Parámetro</th>
+                                            <th class="text-xs-center">Valor</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td class="text-xs-left">Cantidad Inicial</td>
+                                            <td id="c1-p1" class="text-xs-right"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-xs-left">Aporte Períodico</td>
+                                            <td id="c1-p2" class="text-xs-right"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-xs-left">Frecuencia</td>
+                                            <td id="c1-p3" class="text-xs-right"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-xs-left">Duración</td>
+                                            <td id="c1-p4" class="text-xs-right"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-xs-left">Interés</td>
+                                            <td id="c1-p5" class="text-xs-right"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-xs-left">Ahorro Extra</td>
+                                            <td id="c1-p6" class="text-xs-right"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-xs-left">En el Mes</td>
+                                            <td id="c1-p7" class="text-xs-right"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-xs-left thick-600">Total Aportado</td>
+                                            <td id="c1-p8" class="text-xs-right light-primary-color thick-600"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-xs-left thick-600">Intereses Ganados</td>
+                                            <td id="c1-p9" class="text-xs-right light-primary-color thick-600"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-xs-left thick-600">Balance Final</td>
+                                            <td id="c1-p10" class="text-xs-right light-primary-color thick-600"></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <table class="table table-bordered table-hover table-sm">
+                                        <thead class="thead-default">
+                                        <tr>
+                                            <th class="text-xs-center" id="c1-th-1">Mes</th>
+                                            <th class="text-xs-center">Aporte</th>
+                                            <th class="text-xs-center">Interés</th>
+                                            <th class="text-xs-center">Balance</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody id="c1-tbody">
 
-                            </ul>
-                            <p id="c1-results-p2"></p>
-                            <ul id="c1-result-list">
-
-                            </ul>
-                            <p id="c1-results-p3"></p>
-                            <table class="table table-bordered table-hover">
-                                <thead class="thead-default">
-                                <tr>
-                                    <th class="text-xs-center" id="c1-th-1">Mes</th>
-                                    <th class="text-xs-center">Aporte</th>
-                                    <th class="text-xs-center">Interés</th>
-                                    <th class="text-xs-center">Balance</th>
-                                </tr>
-                                </thead>
-                                <tbody id="c1-tbody">
-
-                                </tbody>
-                            </table>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -311,16 +369,45 @@
                                     <i class="fa fa-print"></i></button>
                             </h4>
                             <hr class="m-t-2 m-b-2">
-                            <p id="c2-results-p1">Para alcanzar su objetivo de ahorro, según el siguiente criterio:</p>
-                            <ul id="c2-criteria-list">
-
-                            </ul>
-                            <p id="c2-results-p2"></p>
-                            <ul id="c2-result-list">
-
-                            </ul>
-                            <p id="c2-results-p3"></p>
-                            <table class="table table-bordered table-hover">
+                            <div class="row">
+                                <div class="col-md-7">
+                                    <table class="table table-bordered table-sm">
+                                        <thead class="thead-default">
+                                        <tr>
+                                            <th class="text-xs-center">Parámetro</th>
+                                            <th class="text-xs-center">Valor</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td class="text-xs-left">Meta</td>
+                                            <td id="c2-p1" class="text-xs-right"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-xs-left">Cantidad Inicial</td>
+                                            <td id="c2-p2" class="text-xs-right"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-xs-left">Frecuencia</td>
+                                            <td id="c2-p3" class="text-xs-right"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-xs-left">Duración</td>
+                                            <td id="c2-p4" class="text-xs-right"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-xs-left">Interés</td>
+                                            <td id="c2-p5" class="text-xs-right"></td>
+                                        </tr>
+                                        <tr>
+                                            <td id="c2-p6" class="text-xs-left thick-600"></td>
+                                            <td id="c2-p7" class="text-xs-right light-primary-color thick-600"></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <table class="table table-bordered table-hover table-sm">
                                 <thead class="thead-default">
                                 <tr>
                                     <th class="text-xs-center" id="c2-th-1">Mes</th>
@@ -418,16 +505,49 @@
                                     <i class="fa fa-print"></i></button>
                             </h4>
                             <hr class="m-t-2 m-b-2">
-                            <p id="c3-results-p1">Para alcanzar su objetivo de ahorro, según el siguiente criterio:</p>
-                            <ul id="c3-criteria-list">
-
-                            </ul>
-                            <p id="c3-results-p2"></p>
-                            <ul id="c3-result-list">
-
-                            </ul>
-                            <p id="c3-results-p3"></p>
-                            <table class="table table-bordered table-hover">
+                            <div class="row">
+                                <div class="col-md-7">
+                                    <table class="table table-bordered table-sm">
+                                        <thead class="thead-default">
+                                        <tr>
+                                            <th class="text-xs-center">Parámetro</th>
+                                            <th class="text-xs-center">Valor</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td class="text-xs-left">Meta</td>
+                                            <td id="c3-p1" class="text-xs-right"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-xs-left">Cantidad Inicial</td>
+                                            <td id="c3-p2" class="text-xs-right"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-xs-left">Aporte Períodico</td>
+                                            <td id="c3-p3" class="text-xs-right"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-xs-left">Frecuencia</td>
+                                            <td id="c3-p4" class="text-xs-right"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-xs-left">Interés</td>
+                                            <td id="c3-p5" class="text-xs-right"></td>
+                                        </tr>
+                                        <tr>
+                                            <td id="c3-p6" class="text-xs-left thick-600"></td>
+                                            <td id="c3-p7" class="text-xs-right light-primary-color thick-600"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-xs-left thick-600">Duración</td>
+                                            <td id="c3-p8" class="text-xs-right light-primary-color thick-600"></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <table class="table table-bordered table-hover table-sm">
                                 <thead class="thead-default">
                                 <tr>
                                     <th class="text-xs-center" id="c3-th-1">Mes</th>
@@ -522,16 +642,85 @@
                                     <i class="fa fa-print"></i></button>
                             </h4>
                             <hr class="m-t-2 m-b-2">
-                            <p id="c4-results-p1">Para cancelar el siguiente préstamo:</p>
-                            <ul id="c4-criteria-list">
-
-                            </ul>
-                            <p id="c4-results-p2"></p>
-                            <ul id="c4-result-list">
-
-                            </ul>
-                            <p id="c4-results-p3"></p>
-                            <table class="table table-bordered table-hover">
+                            <div class="row">
+                                <div class="col-md-7">
+                                    <table class="table table-bordered table-sm">
+                                        <thead class="thead-default">
+                                        <tr>
+                                            <th class="text-xs-center">Parámetro</th>
+                                            <th class="text-xs-center">Valor</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td class="text-xs-left">Monto del Préstamo</td>
+                                            <td id="c4-p1" class="text-xs-right"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-xs-left">Interés</td>
+                                            <td id="c4-p2" class="text-xs-right"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-xs-left">Duración</td>
+                                            <td id="c4-p3" class="text-xs-right"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-xs-left thick-600">Letra Mensual</td>
+                                            <td id="c4-p4" class="text-xs-right light-primary-color thick-600"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-xs-left thick-600">Pago a Intereses</td>
+                                            <td id="c4-p5" class="text-xs-right light-primary-color thick-600"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-xs-left thick-600">Pago a Capital</td>
+                                            <td id="c4-p6" class="text-xs-right light-primary-color thick-600"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-xs-left thick-600">Pago Total</td>
+                                            <td id="c4-p7" class="text-xs-right light-primary-color thick-600"></td>
+                                        </tr>
+                                        <tr class="row-to-hide">
+                                            <td class="text-xs-left">Pagos Extra desde Inicio</td>
+                                            <td id="c4-p8" class="text-xs-right"></td>
+                                        </tr>
+                                        <tr class="row-to-hide">
+                                            <td class="text-xs-left">Abono Extraordinario</td>
+                                            <td id="c4-p9" class="text-xs-right"></td>
+                                        </tr>
+                                        <tr class="row-to-hide">
+                                            <td class="text-xs-left">En el Mes</td>
+                                            <td id="c4-p10" class="text-xs-right"></td>
+                                        </tr>
+                                        <tr class="row-to-hide">
+                                            <td class="text-xs-left thick-600">Se Cancela en</td>
+                                            <td id="c4-p11" class="text-xs-right light-primary-color thick-600"></td>
+                                        </tr>
+                                        <tr class="row-to-hide">
+                                            <td class="text-xs-left thick-600">Pago a Intereses</td>
+                                            <td id="c4-p12" class="text-xs-right light-primary-color thick-600"></td>
+                                        </tr>
+                                        <tr class="row-to-hide">
+                                            <td class="text-xs-left thick-600">Pago a Capital</td>
+                                            <td id="c4-p13" class="text-xs-right light-primary-color thick-600"></td>
+                                        </tr>
+                                        <tr class="row-to-hide">
+                                            <td class="text-xs-left thick-600">Pago Total</td>
+                                            <td id="c4-p14" class="text-xs-right light-primary-color thick-600"></td>
+                                        </tr>
+                                        <tr class="row-to-hide">
+                                            <td class="text-xs-left thick-600">Ahorro en Tiempo</td>
+                                            <td id="c4-p15" class="text-xs-right light-primary-color thick-600"></td>
+                                        </tr>
+                                        <tr class="row-to-hide">
+                                            <td class="text-xs-left thick-600">Ahorro en Dinero</td>
+                                            <td id="c4-p16" class="text-xs-right light-primary-color thick-600"></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <table class="table table-bordered table-hover table-sm">
                                 <thead class="thead-default">
                                 <tr>
                                     <th class="text-xs-center" id="c4-th-1">Mes</th>
@@ -665,21 +854,42 @@
                                     <i class="fa fa-print"></i></button>
                             </h4>
                             <hr class="m-t-2 m-b-2">
-                            <p id="c6-results-p1">Un préstamo otorgado bajo las siguientes condiciones:</p>
-                            <ul id="c6-criteria-list">
-
-                            </ul>
-                            <p id="c6-results-p2"></p>
-                            <ul id="c6-result-list">
-
-                            </ul>
-                            <p id="c6-results-p3"></p>
+                            <div class="row">
+                                <div class="col-md-7">
+                                    <table class="table table-bordered table-sm">
+                                        <thead class="thead-default">
+                                        <tr>
+                                            <th class="text-xs-center">Parámetro</th>
+                                            <th class="text-xs-center">Valor</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td class="text-xs-left">Monto del Préstamo</td>
+                                            <td id="c6-p1" class="text-xs-right"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-xs-left">Duración</td>
+                                            <td id="c6-p2" class="text-xs-right"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-xs-left">Letra Mensual</td>
+                                            <td id="c6-p3" class="text-xs-right"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-xs-left thick-600">Tasa de Interés Real</td>
+                                            <td id="c6-p4" class="text-xs-right light-primary-color thick-600"></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-
+            <!-- Calculadora 7 - Calculadora de Jubilación con Retiros Períodicos -->
             <div class="calc-container" id="c7">
                 <h5 class="section-title st-mdb">Calculadora de Fondo de Jubilación con Retiros Períodicos</h5>
 
@@ -751,6 +961,8 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Calculadora 8 - Calculadora de Jubilación de Duración de Retiros -->
             <div class="calc-container" id="c8">
                 <h5 class="section-title st-mdb">Calculadora de Duración de Fondo de Jubilación</h5>
 
@@ -822,7 +1034,9 @@
                     </div>
                 </div>
             </div>
-            <div class="calc-container" id="c9">
+
+            <!-- Calculadora 10 - Calculadora de TC con Pagos Mínimos -->
+            <div class="calc-container" id="10">
                 <h5 class="section-title st-mdb">Calculadora de Tarjeta de Crédito con Pagos Mínimos</h5>
 
                 <div class="row">
@@ -882,8 +1096,10 @@
                     </div>
                 </div>
             </div>
-            <div class="calc-container" id="c10">
-                <h5 class="section-title st-mdb">Calculadora de Tasa de Interés Real</h5>
+
+            <!-- Calculadora 11 - Calculadora de TC con Pagos Fijos -->
+            <div class="calc-container" id="c11">
+                <h5 class="section-title st-mdb">Calculadora de Tarjeta de Crédito con Pagos Fijos</h5>
 
                 <div class="row">
                     <div class="col-md-7">
